@@ -86,7 +86,8 @@ button {
   width: 73px;
   /*display: flex;
   flex-direction: column;*/
-  background: whitesmoke;
+  background: #1abc9c;
+  color: white;
 }
 
 .sidebar-list-group {

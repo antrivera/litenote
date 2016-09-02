@@ -19,4 +19,8 @@ class Notebook < ActiveRecord::Base
     foreign_key: :author_id
   )
 
+  def self.owned_by(user)
+    current_user = User.find(user.id)
+    current_user.notebooks
+  end
 end

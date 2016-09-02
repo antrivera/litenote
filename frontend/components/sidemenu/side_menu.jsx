@@ -1,15 +1,14 @@
 import React from 'react';
+import NotebookContainer from '../notebook/notebook_container';
 
-const SideMenu = ({currentUser}) => (
-  <nav className="side-menu-container">
-    <ul className="side-menu-items">
-      <li>Item</li>
-      <li>Item</li>
-      <li>Item</li>
-      <li>Item</li>
-      <li>Item</li>
-    </ul>
-  </nav>
-);
+const SideMenu = ({currentUser}) => {
 
+
+
+  return (
+    <nav className="side-menu-container">
+      <NotebookContainer />
+    </nav>
+  );
+}
 export default SideMenu;
