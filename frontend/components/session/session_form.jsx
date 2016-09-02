@@ -29,8 +29,16 @@ class SessionForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const user = this.state;
-    this.props.processForm({user});
+    let user = this.state;
+
+    if (this.props.formType === 'signup') {
+      user = {
+        email: user.username,
+        password: user.password
+      }
+    }
+    
+    this.props.processForm({user})
   }
 
   renderErrors() {
@@ -46,6 +54,7 @@ class SessionForm extends React.Component {
   }
 
   render() {
+    let submitButtonVal = (this.props.formType === 'login') ? 'Log in' : 'Sign Up!';
     return (
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
@@ -67,7 +76,7 @@ class SessionForm extends React.Component {
             </label>
 
             <br />
-            <input type="submit" value="Submit" />
+            <input type="submit" value={submitButtonVal} />
 
           </div>
         </form>
