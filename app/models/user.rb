@@ -18,7 +18,12 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token, :ensure_username
 
-  has_many :notebooks
+  has_many(
+    :notebooks,
+    class_name: "Notebook",
+    primary_key: :id,
+    foreign_key: :author_id
+  )
 
   attr_reader :password
 
