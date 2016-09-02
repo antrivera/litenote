@@ -2,9 +2,8 @@ import React from 'react';
 import { Link, hashHistory } from 'react-router';
 
 const sessionLinks = () => (
-  <nav className="login-signup">
-    <Link to="/signup" activeClassName="current"><button>Sign Up!</button></Link>
-  </nav>
+  <div className="login-signup">
+  </div>
 );
 
 const logoutAndRedirect = logout => () => {

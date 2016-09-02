@@ -3,6 +3,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import App from '../app';
 import SessionFormContainer from '../session/session_form_container';
 import HomeContainer from '../home/home_container';
+import NavbarContainer from '../navbar/navbar_container';
 
 class AppRouter extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class AppRouter extends React.Component {
 
     this.routes = (
       <Route path="/" component={ App }>
+        <IndexRoute component={ NavbarContainer } />
         <Route path="/login" onEnter={ this.redirectIfLoggedIn } component={ SessionFormContainer } />
         <Route path="/signup" onEnter={ this.redirectIfLoggedIn } component={ SessionFormContainer } />
         <Route path="/home" onEnter={ this.ensureLoggedIn } component={ HomeContainer } />

@@ -3,6 +3,7 @@ body {
   padding: 0;
   border: 0;
   outline: 0;
+  height: 100%;
   font: inherit;
   color: inherit;
   text-align: inherit;
@@ -18,6 +19,9 @@ body {
 }
 
 html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -25,10 +29,14 @@ body {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   font-weight: 400;
+  /*background-image: url(splash-image.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;*/
 }
 
 ul {
   list-style: none;
+  padding: 0;
 }
 
 a {
@@ -50,23 +58,52 @@ button {
   color: white;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-  background: #e74c3c;
+  background: #1abc9c;
   border: 0;
-  border-bottom: 2px solid #db4334;
+  border-bottom: 2px solid #1abc9c;
   cursor: pointer;
-  -webkit-box-shadow: inset 0 -2px #db4334;
-  box-shadow: inset 0 -2px #db4334;
+  -webkit-box-shadow: inset 0 -2px #1abc9c;
+  box-shadow: inset 0 -2px #1abc9c;
 }
 
 .navbar {
+  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background: #e74c3c;
+  /*background: #e74c3c;*/
+  background: #1abc9c;
   padding: 10px;
+  margin-bottom: 20px;
   color: white;
 }
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 73px;
+  /*display: flex;
+  flex-direction: column;*/
+  background: whitesmoke;
+}
+
+.sidebar-list-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.side-menu-container {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  margin-left: 74px;
+  width: 200px;
+  background: whitesmoke;
+  overflow-y: scroll;
+}
+
 
 .navbar-list-group {
   display: flex;
@@ -82,4 +119,8 @@ button {
   text-align:center;
   border: 1px solid black;
   padding: 10px;
+}
+
+.workspace-container {
+  margin-left: 275px;
 }
