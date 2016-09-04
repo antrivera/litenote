@@ -4,6 +4,7 @@ import App from '../app';
 import SessionFormContainer from '../session/session_form_container';
 import HomeContainer from '../home/home_container';
 import NavbarContainer from '../navbar/navbar_container';
+import NewNotebookContainer from '../notebook/new_notebook_container';
 
 class AppRouter extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class AppRouter extends React.Component {
         <Route path="/login" onEnter={ this.redirectIfLoggedIn } component={ SessionFormContainer } />
         <Route path="/signup" onEnter={ this.redirectIfLoggedIn } component={ SessionFormContainer } />
         <Route path="/home" onEnter={ this.ensureLoggedIn } component={ HomeContainer } />
+        <Route path="/new-notebook" onEnter={ this.ensureLoggedIn } component={ NewNotebookContainer } />
       </Route>
     );
   }

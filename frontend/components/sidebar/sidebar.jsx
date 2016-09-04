@@ -1,5 +1,5 @@
 import React from 'react';
-import Notebook from '../notebook/notebook';
+import NotebookIndex from '../notebook/notebook_index';
 import { Link, hashHistory } from 'react-router';
 
 class Sidebar extends React.Component {
@@ -32,7 +32,7 @@ class Sidebar extends React.Component {
         </div>
 
         <div className="side-menu-container">
-          <Notebook notebooks={this.props.notebooks} />
+          <NotebookIndex notebooks={this.props.notebooks} />
         </div>
       </div>
     );

@@ -146,6 +146,11 @@ button {
   border-bottom: 1px solid gainsboro;
 }
 
+.header-container {
+  height: 122px;
+  border-bottom: 1px solid gainsboro;
+}
+
 /* allow scrollbar to work */
 #root, #root>div {
   height: 100%;
@@ -181,4 +186,30 @@ button {
   position: fixed;
   top: 600px; /* TODO: make responsive */
   mask-image: url(logout.svg);
+}
+
+.new-notebook-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.new-notebook-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-notebook-form-btns {
+  display: flex;
+  justify-content: space-around;
+  width: 250px;
+}
+
+.cancel-btn {
+  background: whitesmoke;
+  color: black;
+  border: 1px solid gainsboro;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }

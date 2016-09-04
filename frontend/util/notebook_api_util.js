@@ -6,3 +6,13 @@ export const fetchAllNotebooks = (success, error) => {
     error
   });
 };
+
+export const createNotebook = (data, success, error) => {
+  $.ajax({
+    method: 'POST',
+    url: 'api/notebooks',
+    data,
+    success,
+    error
+  });
+};
