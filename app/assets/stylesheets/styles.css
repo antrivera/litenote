@@ -34,9 +34,14 @@ body {
   background-repeat: no-repeat;*/
 }
 
+html, body {
+  overflow: hidden;
+}
+
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 a {
@@ -90,9 +95,18 @@ button {
   color: white;
 }
 
-.sidebar-list-group {
+.sidebar-btn-group {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.sidebar-btn {
+  /*border-radius: 50%;*/
+  background: white;
+  color: #1abc9c;
+  width: 45px;
+  height: 45px;
 }
 
 .side-menu-container {
@@ -100,8 +114,8 @@ button {
   top: 0;
   height: 100%;
   margin-left: 74px;
-  width: 200px;
-  background: whitesmoke;
+  width: 350px;
+  border-right: 1px solid gainsboro;
   overflow-y: scroll;
 }
 
@@ -123,5 +137,48 @@ button {
 }
 
 .workspace-container {
-  margin-left: 275px;
+  margin-left: 425px;
+}
+
+.notebook-list-item {
+  height: 500px; /* 120px */
+  border-top: 1px solid gainsboro;
+  border-bottom: 1px solid gainsboro;
+}
+
+/* allow scrollbar to work */
+#root, #root>div {
+  height: 100%;
+}
+
+.workspace-container {
+  height: 100%;
+}
+
+.text-area {
+  height: 100%;
+  width: 100%;
+}
+
+#notebook-btn {
+  -webkit-mask-image: url(notebook.svg);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 90%;
+  mask-image: url(notebook.svg);
+}
+
+#note-btn {
+  -webkit-mask-image: url(note.svg);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100%;
+  mask-image: url(note.svg);
+}
+
+#logout-btn {
+  -webkit-mask-image: url(logout.svg);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 82%;
+  position: fixed;
+  top: 600px; /* TODO: make responsive */
+  mask-image: url(logout.svg);
 }

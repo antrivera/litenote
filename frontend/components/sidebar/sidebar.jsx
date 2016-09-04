@@ -1,16 +1,42 @@
 import React from 'react';
+import Notebook from '../notebook/notebook';
+import { Link, hashHistory } from 'react-router';
 
-const Sidebar = ({logout}) => (
-  <nav className="sidebar">
-    <h3> LN </h3>
+class Sidebar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.logoutAndRedirect = this.logoutAndRedirect.bind(this);
+    this.fetchAllNotebooks = this.fetchAllNotebooks.bind(this);
+  }
 
-    <ul className="sidebar-list-group">
-      <li>item</li>
-      <li>item</li>
-      <li>item</li>
-    </ul>
+  fetchAllNotebooks() {
+    this.props.fetchAllNotebooks();
+  }
 
-  </nav>
-);
+  logoutAndRedirect(logout) {
+    this.props.logout();
+    hashHistory.push('/');
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="sidebar">
+          <h3> LN </h3>
+
+          <div className="sidebar-btn-group">
+            <button className="sidebar-btn" id="note-btn"></button>
+            <button className="sidebar-btn" id="notebook-btn" onClick={this.fetchAllNotebooks}></button>
+            <button className="sidebar-btn" id="logout-btn" onClick={this.logoutAndRedirect}></button>
+          </div>
+        </div>
+
+        <div className="side-menu-container">
+          <Notebook notebooks={this.props.notebooks} />
+        </div>
+      </div>
+    );
+  }
+}
 
 export default Sidebar;

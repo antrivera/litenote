@@ -1,17 +1,17 @@
 import React from 'react';
 
-const Notebook = ({fetchAllNotebooks, notebooks}) => {
+const Notebook = ({notebooks}) => {
   console.log(notebooks);
   const notebookTitles = notebooks.map((notebook, idx) => (
     <li key={notebook.title + idx}>
-      {notebook.title}
+      <div className="notebook-list-item" onClick={console.log('click')}>
+        {notebook.title}
+      </div>
     </li>
   ));
-
+  
   return (
     <div>
-      <button onClick={fetchAllNotebooks}>Get Notebooks</button>
-      <br />
       <ul>
         {notebookTitles}
       </ul>
