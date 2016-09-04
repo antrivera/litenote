@@ -85,6 +85,10 @@ button {
 }
 
 .sidebar {
+  display: flex;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   height: 100%;
@@ -179,13 +183,29 @@ button {
   mask-image: url(note.svg);
 }
 
+#reactnote-logo {
+  height: 200%;
+  background: #5a5a5a;
+  -webkit-mask-image: url(reactnote-logo.svg);
+  -webkit-mask-repeat: no-repeat;
+}
+
 #logout-btn {
   -webkit-mask-image: url(logout.svg);
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: 82%;
-  position: fixed;
-  top: 600px; /* TODO: make responsive */
+  /* position: fixed; */
+  /* top: 600px; */ /* TODO: make responsive */
   mask-image: url(logout.svg);
+}
+
+#logout-btn-dummy {
+  align-self: center;
+}
+
+#logo-dummy {
+  height: 82px;
+  overflow-y: hidden;
 }
 
 .new-notebook-form-container {

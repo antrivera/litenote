@@ -22,11 +22,15 @@ class Sidebar extends React.Component {
     return (
       <div>
         <div className="sidebar">
-          <h3> LN </h3>
+          <div id="logo-dummy">
+            <div id="reactnote-logo"></div>
+          </div>
 
           <div className="sidebar-btn-group">
             <button className="sidebar-btn" id="note-btn"></button>
             <button className="sidebar-btn" id="notebook-btn" onClick={this.fetchAllNotebooks}></button>
+          </div>
+          <div id="logout-btn-dummy">
             <button className="sidebar-btn" id="logout-btn" onClick={this.logoutAndRedirect}></button>
           </div>
         </div>
