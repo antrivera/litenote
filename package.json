@@ -8,8 +8,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack -w"
+    "postinstall": "./node_modules/.bin/webpack"
   },
   "repository": {
     "type": "git",
@@ -20,6 +19,10 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/antrivera/litenote/issues"
+  },
+  "engines": {
+    "node": "6.2.2",
+    "npm": "3.9.5"
   },
   "homepage": "https://github.com/antrivera/litenote#readme",
   "dependencies": {
