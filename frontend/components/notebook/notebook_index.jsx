@@ -6,12 +6,17 @@ class NotebookIndex extends React.Component {
     super(props);
 
     this.createNotebook = this.createNotebook.bind(this);
+    this.clickHandler = this.clickHandler.bind(this);
+  }
+
+  clickHandler() {
+    console.log('click');
   }
 
   notebookTitles() {
     return this.props.notebooks.map((notebook, idx) => (
       <li key={notebook.title + idx}>
-        <div className="notebook-list-item" onClick={console.log('click')}>
+        <div className="notebook-list-item" onClick={this.clickHandler}>
           {notebook.title}
         </div>
       </li>
@@ -29,7 +34,7 @@ class NotebookIndex extends React.Component {
           <h2>Notebook Header</h2>
           <button onClick={this.createNotebook}>New Notebook</button>
         </div>
-        <ul>
+        <ul className="sidemenu-index">
           {this.notebookTitles()}
         </ul>
       </div>

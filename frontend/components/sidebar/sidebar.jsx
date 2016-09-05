@@ -22,8 +22,8 @@ class Sidebar extends React.Component {
     return (
       <div>
         <div className="sidebar">
-          <div id="logo-dummy">
-            <div id="reactnote-logo"></div>
+          <div className="logo-dummy">
+            <div className="reactnote-logo"></div>
           </div>
 
           <div className="sidebar-btn-group">

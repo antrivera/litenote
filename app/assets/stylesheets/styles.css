@@ -23,10 +23,10 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: proxima-nova,"Helvetica Neue",Helvetica,Roboto,Arial,sans-serif
 }
 
 body {
-  font-family: "Roboto", sans-serif;
   font-size: 16px;
   font-weight: 400;
   /*background-image: url(splash-image.jpg);
@@ -36,6 +36,10 @@ body {
 
 html, body {
   overflow: hidden;
+}
+
+header {
+  height: 100%;
 }
 
 ul {
@@ -77,10 +81,8 @@ button {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  /*background: #e74c3c;*/
   background: #1abc9c;
   padding: 10px;
-  margin-bottom: 20px;
   color: white;
 }
 
@@ -141,18 +143,28 @@ button {
 }
 
 .workspace-container {
+  text-align: center;
   margin-left: 425px;
 }
 
 .notebook-list-item {
-  height: 500px; /* 120px */
+  height: 120px; /* 120px */
   border-top: 1px solid gainsboro;
   border-bottom: 1px solid gainsboro;
+  cursor: pointer;
+}
+
+.notebook-list-item:hover {
+  background: #a9bcca;
+  color: white;
 }
 
 .header-container {
   height: 122px;
+  display: flex;
   border-bottom: 1px solid gainsboro;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* allow scrollbar to work */
@@ -183,7 +195,7 @@ button {
   mask-image: url(note.svg);
 }
 
-#reactnote-logo {
+.reactnote-logo {
   height: 200%;
   background: #5a5a5a;
   -webkit-mask-image: url(reactnote-logo.svg);
@@ -203,9 +215,37 @@ button {
   align-self: center;
 }
 
-#logo-dummy {
+.logo-dummy {
   height: 82px;
   overflow-y: hidden;
+}
+
+.splash-logo-dummy {
+  height: 50px;
+  width: 50px;
+  overflow-y: hidden;
+}
+
+#splash-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  background-image: url(reactnote-splash.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#splash-content {
+  display: flex;
+  margin-left: 60px;
+}
+
+#sign-up-btn-container {
+  margin-top: 60px;
+  margin-left: 30px
 }
 
 .new-notebook-form-container {
@@ -232,4 +272,10 @@ button {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+
+
+.sidemenu-index {
+  display: flex;
+  flex-direction: column-reverse;
 }

@@ -7,6 +7,8 @@ const NotebookReducer = (state= [], action) => {
       return action.notebooks;
     case NotebookConstants.RECEIVE_NOTEBOOK:
       return [...state, action.notebook];
+    case NotebookConstants.CLEAR_NOTEBOOKS_STATE:
+      return [];
     case NotebookConstants.RECEIVE_ERRORS:
       // TODO: error state structure
     default:
