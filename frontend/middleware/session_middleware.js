@@ -1,5 +1,6 @@
 import {SessionConstants, receiveCurrentUser, receiveErrors} from '../actions/session_actions';
 import { clearNotebooksState } from '../actions/notebook_actions';
+import { clearNotesState } from '../actions/note_actions';
 import * as SessionAPI from '../util/session_api_util';
 
 const SessionMiddleware = ({getState, dispatch}) => next => action => {
@@ -16,6 +17,7 @@ const SessionMiddleware = ({getState, dispatch}) => next => action => {
     case SessionConstants.LOGOUT:
       const logoutSuccess = () => {
         dispatch(clearNotebooksState());
+        dispatch(clearNotesState());
         return next(action);
       }
       SessionAPI.logout(logoutSuccess, error);
