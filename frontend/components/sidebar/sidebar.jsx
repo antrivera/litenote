@@ -1,16 +1,35 @@
 import React from 'react';
 import NotebookIndex from '../notebook/notebook_index';
+import NoteIndex from '../note/note_index';
 import { Link, hashHistory } from 'react-router';
 
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      displayNotes: true,
+      displayNotebooks: false
+    };
+
     this.logoutAndRedirect = this.logoutAndRedirect.bind(this);
     this.fetchAllNotebooks = this.fetchAllNotebooks.bind(this);
+    this.fetchAllNotes = this.fetchAllNotes.bind(this);
   }
 
   fetchAllNotebooks() {
     this.props.fetchAllNotebooks();
+    this.setState({
+      displayNotes: false,
+      displayNotebooks: true
+    });
+  }
+
+  fetchAllNotes() {
+    this.props.fetchAllNotes();
+    this.setState({
+      displayNotes: true,
+      displayNotebooks: false
+    });
   }
 
   logoutAndRedirect(logout) {
@@ -27,7 +46,7 @@ class Sidebar extends React.Component {
           </div>
 
           <div className="sidebar-btn-group">
-            <button className="sidebar-btn" id="note-btn"></button>
+            <button className="sidebar-btn" id="note-btn" onClick={this.fetchAllNotes}></button>
             <button className="sidebar-btn" id="notebook-btn" onClick={this.fetchAllNotebooks}></button>
           </div>
           <div id="logout-btn-dummy">
@@ -36,7 +55,8 @@ class Sidebar extends React.Component {
         </div>
 
         <div className="side-menu-container">
-          <NotebookIndex notebooks={this.props.notebooks} />
+          {this.state.displayNotes ? <NoteIndex /> :
+            <NotebookIndex notebooks={this.props.notebooks} /> }
         </div>
       </div>
     );
