@@ -14,8 +14,7 @@ column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 title       | string    | not null
-body        | text      | 
-author_id   | integer   | not null, foreign key (references users), indexed
+body        | text      |
 notebook_id | integer   | not null, foreign key (references notebooks), indexed
 
 

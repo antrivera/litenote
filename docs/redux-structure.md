@@ -19,18 +19,15 @@ components, i.e. containers, are listed at the end.
   0. invoked from `Sidebar` `onClick`
   0. calls `DELETE /api/session`
   0. success callback is `removeCurrentUser`
-- `fetchCurrentUser`
-  0. invoked from `App` in `didMount`
-  0. calls `GET /api/session`
-  0. success callback is `receiveCurrentUser`
+
 
 ### Session API Response Actions
 - `receiveCurrentUser`
   0. invoked from API callback
   0. the `SessionReducer` stores `currentUser` in the application's state
-- `removeCurrentUser`
+- `receiveErrors`
   0. invoked from API callback
-  0. the `SessionReducer` removes `currentUser` from the application's state
+  0. the `SessionReducer` stores `errors` pertaining to sessions in the application's state
 
 ## Error Cycles
 ### Error API Response Actions
