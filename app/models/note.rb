@@ -14,4 +14,14 @@ class Note < ActiveRecord::Base
   validates :title, :notebook_id, presence: true
 
   belongs_to :notebook, dependent: :destroy
+
+  def self.owned_by(user)
+    current_user = User.find(user.id)
+    user_notes = []
+    current_user.notebooks.each do |notebook|
+      user_notes << notebook.notes
+    end
+
+    user_notes.flatten
+  end
 end
