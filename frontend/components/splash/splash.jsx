@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 
 class Splash extends React.Component {
   constructor(props) {
@@ -15,6 +15,16 @@ class Splash extends React.Component {
     }
 
     this.props.login({user})
+  }
+
+  componentDidUpdate() {
+    this.redirectIfLoggedIn();
+  }
+
+  redirectIfLoggedIn() {
+    if (this.props.loggedIn) {
+      hashHistory.push("/login");
+    }
   }
 
   render() {
