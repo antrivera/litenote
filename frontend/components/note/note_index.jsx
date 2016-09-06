@@ -8,7 +8,7 @@ class NoteIndex extends React.Component {
   noteTitles() {
     return this.props.notes.map((note, idx) => (
       <li key={note.title + idx}>
-        <div className="note-list-item">
+        <div className="notebook-list-item">
           {note.title}
         </div>
       </li>
@@ -18,7 +18,12 @@ class NoteIndex extends React.Component {
   render() {
     return (
       <div className="side-menu-container">
-        { this.noteTitles() }
+        <div className="header-container">
+          <h2>{`${this.props.notebookTitle}`}</h2>
+        </div>
+        <ul>
+          { this.noteTitles() }
+        </ul>
       </div>
     );
   }

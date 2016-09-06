@@ -18,7 +18,8 @@ const mapDispatchToProps = dispatch => ({
   fetchNotebook: notebook => dispatch(fetchNotebook(notebook)),
   fetchAllNotes: () => dispatch(fetchAllNotes()),
   displayAllNotes: () => dispatch(ActiveStateActions.displayAllNotes()),
-  displayAllNotebooks: () => dispatch(ActiveStateActions.displayAllNotebooks())
+  displayAllNotebooks: () => dispatch(ActiveStateActions.displayAllNotebooks()),
+  displayNotebookContent: notebook => dispatch(ActiveStateActions.displayNotebookContent(notebook))
 });
 
 export default connect(

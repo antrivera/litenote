@@ -13,6 +13,10 @@ class Sidebar extends React.Component {
     this.fetchNotebookContents = this.fetchNotebookContents.bind(this);
   }
 
+  componentDidMount() {
+    this.fetchAllNotes();
+  }
+
   fetchAllNotebooks() {
     this.props.fetchAllNotebooks();
     this.props.displayAllNotebooks();
@@ -25,7 +29,7 @@ class Sidebar extends React.Component {
 
   fetchNotebookContents(notebook) {
     this.props.fetchNotebook(notebook);
-    this.props.displayAllNotes();
+    this.props.displayNotebookContent(notebook);
   }
 
   logoutAndRedirect(logout) {
@@ -50,7 +54,7 @@ class Sidebar extends React.Component {
           </div>
         </div>
 
-        {this.props.activeState.notes ? <NoteIndex notes={this.props.notes} /> :
+        {this.props.activeState.notes ? <NoteIndex notes={this.props.notes} notebookTitle={this.props.activeState.currentNotebook} /> :
           <NotebookIndex notebooks={this.props.notebooks} fetchNotebookContents={this.fetchNotebookContents} /> }
       </div>
     );

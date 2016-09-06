@@ -31,7 +31,7 @@ class NotebookIndex extends React.Component {
     return (
       <div className="notebook-index-container">
         <div className="header-container">
-          <h2>Notebook Header</h2>
+          <h2>Notebooks</h2>
           <button onClick={this.createNotebook}>New Notebook</button>
         </div>
         <ul className="sidemenu-index">
