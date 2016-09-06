@@ -7,7 +7,9 @@ class NoteIndex extends React.Component {
 
   render() {
     return (
-      <p> Notes notes notes</p>
+      <div className="side-menu-container">
+        <p> Notes notes notes</p>
+      </div>
     );
   }
 };

@@ -6,6 +6,7 @@ import { Link, hashHistory } from 'react-router';
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       displayNotes: true,
       displayNotebooks: false
@@ -54,10 +55,8 @@ class Sidebar extends React.Component {
           </div>
         </div>
 
-        <div className="side-menu-container">
-          {this.state.displayNotes ? <NoteIndex /> :
-            <NotebookIndex notebooks={this.props.notebooks} /> }
-        </div>
+        {this.state.displayNotes ? <NoteIndex /> :
+          <NotebookIndex notebooks={this.props.notebooks} /> }
       </div>
     );
   }

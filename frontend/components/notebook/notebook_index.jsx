@@ -6,17 +6,17 @@ class NotebookIndex extends React.Component {
     super(props);
 
     this.createNotebook = this.createNotebook.bind(this);
-    this.clickHandler = this.clickHandler.bind(this);
+    this.displayNotebook = this.displayNotebook.bind(this);
   }
 
-  clickHandler() {
-    console.log('click');
+  displayNotebook(notebook) {
+    hashHistory.push(`/notebooks/${notebook.id}`);
   }
 
   notebookTitles() {
     return this.props.notebooks.map((notebook, idx) => (
       <li key={notebook.title + idx}>
-        <div className="notebook-list-item" onClick={this.clickHandler}>
+        <div className="notebook-list-item" onClick={this.displayNotebook.bind(null, notebook)}>
           {notebook.title}
         </div>
       </li>
@@ -29,7 +29,7 @@ class NotebookIndex extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="notebook-index-container">
         <div className="header-container">
           <h2>Notebook Header</h2>
           <button onClick={this.createNotebook}>New Notebook</button>
