@@ -5,7 +5,7 @@ export const NoteConstants = {
   RECEIVE_NOTE: "RECEIVE_NOTE",
   RECEIVE_ERRORS: "RECEIVE_ERRORS",
   CLEAR_NOTES_STATE: "CLEAR_NOTES_STATE",
-}
+};
 
 export const fetchAllNotes = () => ({
   type: NoteConstants.REQUEST_NOTES

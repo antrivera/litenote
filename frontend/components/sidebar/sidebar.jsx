@@ -7,30 +7,25 @@ class Sidebar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      displayNotes: true,
-      displayNotebooks: false
-    };
-
     this.logoutAndRedirect = this.logoutAndRedirect.bind(this);
     this.fetchAllNotebooks = this.fetchAllNotebooks.bind(this);
     this.fetchAllNotes = this.fetchAllNotes.bind(this);
+    this.fetchNotebookContents = this.fetchNotebookContents.bind(this);
   }
 
   fetchAllNotebooks() {
     this.props.fetchAllNotebooks();
-    this.setState({
-      displayNotes: false,
-      displayNotebooks: true
-    });
+    this.props.displayAllNotebooks();
   }
 
   fetchAllNotes() {
     this.props.fetchAllNotes();
-    this.setState({
-      displayNotes: true,
-      displayNotebooks: false
-    });
+    this.props.displayAllNotes();
+  }
+
+  fetchNotebookContents(notebook) {
+    this.props.fetchNotebook(notebook);
+    this.props.displayAllNotes();
   }
 
   logoutAndRedirect(logout) {
@@ -55,8 +50,8 @@ class Sidebar extends React.Component {
           </div>
         </div>
 
-        {this.state.displayNotes ? <NoteIndex /> :
-          <NotebookIndex notebooks={this.props.notebooks} /> }
+        {this.props.activeState.notes ? <NoteIndex notes={this.props.notes} /> :
+          <NotebookIndex notebooks={this.props.notebooks} fetchNotebookContents={this.fetchNotebookContents} /> }
       </div>
     );
   }

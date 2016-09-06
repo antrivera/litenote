@@ -1,5 +1,6 @@
 export const NotebookConstants = {
   REQUEST_NOTEBOOKS: "REQUEST_NOTEBOOKS",
+  REQUEST_NOTEBOOK: "REQUEST_NOTEBOOK",
   CREATE_NOTEBOOK: "CREATE_NOTEBOOK",
   RECEIVE_NOTEBOOKS: "RECEIVE_NOTEBOOKS",
   RECEIVE_NOTEBOOK: "RECEIVE_NOTEBOOK",
@@ -9,6 +10,11 @@ export const NotebookConstants = {
 
 export const fetchAllNotebooks = () => ({
   type: NotebookConstants.REQUEST_NOTEBOOKS
+});
+
+export const fetchNotebook = notebook => ({
+  type: NotebookConstants.REQUEST_NOTEBOOK,
+  notebook
 });
 
 export const createNotebook = notebook => ({

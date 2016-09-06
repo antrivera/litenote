@@ -7,6 +7,15 @@ export const fetchAllNotebooks = (success, error) => {
   });
 };
 
+export const fetchNotebook = (notebook, success, error) => {
+  $.ajax({
+    method: 'GET',
+    url: `api/notebooks/${notebook.id}`,
+    success,
+    error
+  });
+};
+
 export const createNotebook = (data, success, error) => {
   $.ajax({
     method: 'POST',

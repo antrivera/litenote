@@ -10,7 +10,7 @@ class NotebookIndex extends React.Component {
   }
 
   displayNotebook(notebook) {
-    hashHistory.push(`/notebooks/${notebook.id}`);
+    this.props.fetchNotebookContents(notebook);
   }
 
   notebookTitles() {
