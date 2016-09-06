@@ -195,6 +195,13 @@ button {
   mask-image: url(note.svg);
 }
 
+#new-note-btn {
+  -webkit-mask-image: url(new-note.svg);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 95%;
+  mask-image: url(new-note.svg);
+}
+
 .reactnote-logo {
   height: 200%;
   background: #5a5a5a;

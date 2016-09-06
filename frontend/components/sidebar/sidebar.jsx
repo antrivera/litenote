@@ -44,8 +44,9 @@ class Sidebar extends React.Component {
           <div className="logo-dummy">
             <div className="reactnote-logo"></div>
           </div>
-
+          
           <div className="sidebar-btn-group">
+            <button className="sidebar-btn" id="new-note-btn"></button>
             <button className="sidebar-btn" id="note-btn" onClick={this.fetchAllNotes}></button>
             <button className="sidebar-btn" id="notebook-btn" onClick={this.fetchAllNotebooks}></button>
           </div>
