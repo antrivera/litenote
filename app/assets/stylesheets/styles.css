@@ -172,7 +172,6 @@ button {
 .workspace-container {
   height: 100%;
   min-width: 403px;
-  text-align: center;
   margin-left: 425px;
 }
 
@@ -296,4 +295,25 @@ button {
   border-right: 1px solid gainsboro;
   overflow-y: scroll;
   background: white;
+  z-index: 1
+}
+
+.editor-container {
+  position: fixed;
+  height: 100%;
+  width: 65%;
+  min-width: 300px;
+  overflow-y: scroll;
+  border: 1px solid gainsboro;
+  z-index: 0;
+}
+
+.public-DraftEditorPlaceholder-root {
+  position: absolute;
+  color: #9197a3;
+  padding: 15px;
+}
+
+.public-DraftEditor-content {
+  padding: 15px;
 }
