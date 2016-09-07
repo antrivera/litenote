@@ -175,6 +175,11 @@ button {
   margin-left: 425px;
 }
 
+.workspace-header {
+  border-bottom: 1px solid gainsboro;
+  margin: 0 15px 0 15px;
+}
+
 .text-area {
   height: 100%;
   width: 100%;
@@ -348,4 +353,8 @@ input:focus {
 .note-list-item:hover {
   border: 2px solid #1abc9c;
   color: #1abc9c;
+}
+
+.home-container {
+  height: 100%;
 }

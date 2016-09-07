@@ -49,14 +49,16 @@ class Workspace extends React.Component {
     const { editorState } = this.props.editorState;
     return (
       <div className="workspace-container">
-        <div>
+        <div className="workspace-header">
           <button className="save-btn" onClick={this.saveNoteContents({editorState})}>Save</button>
+          <p>{this.props.activeState.currentNotebook.title}</p>
         </div>
         <div>
           <input className={"note-title-input"}
             type="text"
             placeholder="Title your note"
             value= {this.props.editorState.title}
+            ref="editor-title"
             onChange={this.update("title")} />
         </div>
         <div className="editor-container" onClick={this.focus}>

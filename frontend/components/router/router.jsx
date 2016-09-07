@@ -5,6 +5,7 @@ import SessionFormContainer from '../session/session_form_container';
 import HomeContainer from '../home/home_container';
 import SplashContainer from '../splash/splash_container';
 import NewNotebookContainer from '../notebook/new_notebook_container';
+import NewNoteContainer from '../note/new_note_container';
 
 class AppRouter extends React.Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class AppRouter extends React.Component {
         <Route path="/signup" onEnter={ this.redirectIfLoggedIn } component={ SessionFormContainer } />
         <Route path="/home" onEnter={ this.ensureLoggedIn } component={ HomeContainer } />
         <Route path="/new-notebook" onEnter={ this.ensureLoggedIn } component={ NewNotebookContainer } />
+        <Route path="/new-note" onEnter={ this.ensureLoggedIn } component={ NewNoteContainer } />
       </Route>
     );
   }

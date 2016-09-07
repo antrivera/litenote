@@ -9,6 +9,8 @@ const defaultEditorState = {
 
 const EditorStateReducer = (state= defaultEditorState, action) => {
   switch (action.type) {
+    case EditorConstants.EMPTY_CONTENT_STATE:
+      return defaultEditorState;
     case EditorConstants.SET_CONTENT_STATE:
       const { editorState } = action.content;
       return merge({}, state, {editorState}, {title: action.content.title});

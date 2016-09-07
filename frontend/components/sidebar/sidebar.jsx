@@ -12,10 +12,15 @@ class Sidebar extends React.Component {
     this.fetchAllNotes = this.fetchAllNotes.bind(this);
     this.fetchNotebookContents = this.fetchNotebookContents.bind(this);
     this.fetchNoteContent = this.fetchNoteContent.bind(this);
+    this.createNewNote = this.createNewNote.bind(this);
   }
 
   componentDidMount() {
     this.fetchAllNotes();
+  }
+
+  createNewNote() {
+    hashHistory.push('/new-note');
   }
 
   fetchAllNotebooks() {
@@ -53,7 +58,7 @@ class Sidebar extends React.Component {
           </div>
 
           <div className="sidebar-btn-group">
-            <button className="sidebar-btn" id="new-note-btn"></button>
+            <button className="sidebar-btn" id="new-note-btn" onClick={this.createNewNote}></button>
             <button className="sidebar-btn" id="note-btn" onClick={this.fetchAllNotes}></button>
             <button className="sidebar-btn" id="notebook-btn" onClick={this.fetchAllNotebooks}></button>
           </div>
