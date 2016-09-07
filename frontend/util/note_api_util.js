@@ -7,6 +7,15 @@ export const fetchAllNotes = (success, error) => {
   });
 };
 
+export const fetchNote = (note, success, error) => {
+  $.ajax({
+    method: 'GET',
+    url: `api/notes/${note.id}`,
+    success,
+    error
+  });
+};
+
 export const createNote = (data, success, error) => {
   $.ajax({
     method: 'POST',

@@ -1,5 +1,6 @@
 export const NoteConstants = {
   REQUEST_NOTES: "REQUEST_NOTES",
+  REQUEST_NOTE: "REQUEST_NOTE",
   CREATE_NOTE: "CREATE_NOTE",
   RECEIVE_NOTES: "RECEIVE_NOTES",
   RECEIVE_NOTE: "RECEIVE_NOTE",
@@ -9,6 +10,11 @@ export const NoteConstants = {
 
 export const fetchAllNotes = () => ({
   type: NoteConstants.REQUEST_NOTES
+});
+
+export const fetchNote = note => ({
+  type: NoteConstants.REQUEST_NOTE,
+  note
 });
 
 export const createNote = note => ({

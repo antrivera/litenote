@@ -17,6 +17,16 @@ class Api::NotesController < ApplicationController
     end
   end
 
+  def show
+    @note = Note.find(params[:id])
+
+    if @note.notebook.author_id == current_user.id
+      render json: @note
+    else
+      render json: @note.errors.full_messages, status: 422
+    end
+  end
+
   def update
   end
 

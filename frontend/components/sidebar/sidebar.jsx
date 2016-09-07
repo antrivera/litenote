@@ -11,6 +11,7 @@ class Sidebar extends React.Component {
     this.fetchAllNotebooks = this.fetchAllNotebooks.bind(this);
     this.fetchAllNotes = this.fetchAllNotes.bind(this);
     this.fetchNotebookContents = this.fetchNotebookContents.bind(this);
+    this.fetchNoteContent = this.fetchNoteContent.bind(this);
   }
 
   componentDidMount() {
@@ -25,6 +26,11 @@ class Sidebar extends React.Component {
   fetchAllNotes() {
     this.props.fetchAllNotes();
     this.props.displayAllNotes();
+  }
+
+  fetchNoteContent(note) {
+    this.props.fetchNote(note);
+    this.props.displayNoteContent(note);
   }
 
   fetchNotebookContents(notebook) {
@@ -44,7 +50,7 @@ class Sidebar extends React.Component {
           <div className="logo-dummy">
             <div className="reactnote-logo"></div>
           </div>
-          
+
           <div className="sidebar-btn-group">
             <button className="sidebar-btn" id="new-note-btn"></button>
             <button className="sidebar-btn" id="note-btn" onClick={this.fetchAllNotes}></button>
@@ -55,8 +61,13 @@ class Sidebar extends React.Component {
           </div>
         </div>
 
-        {this.props.activeState.notes ? <NoteIndex notes={this.props.notes} notebookTitle={this.props.activeState.currentNotebook} /> :
-          <NotebookIndex notebooks={this.props.notebooks} fetchNotebookContents={this.fetchNotebookContents} /> }
+        {this.props.activeState.notes ?
+          <NoteIndex notes={this.props.notes}
+            notebook={this.props.activeState.currentNotebook}
+            fetchNoteContent={this.fetchNoteContent} /> :
+          <NotebookIndex
+            notebooks={this.props.notebooks}
+            fetchNotebookContents={this.fetchNotebookContents} /> }
       </div>
     );
   }
