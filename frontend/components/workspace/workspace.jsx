@@ -8,12 +8,10 @@ class Workspace extends React.Component {
 
     this.state = {
       editorState: this.props.editorState.editorState,
-      title: ""
     };
 
     this.focus = () => this.refs.editor.focus();
     this.onChange = editorState => {
-      // console.log(convertToRaw(editorState.getCurrentContent()));
       this.props.setContentState({editorState});
     }
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
@@ -21,8 +19,7 @@ class Workspace extends React.Component {
   }
 
   update(field) {
-    console.log(this.state.title);
-    return e => {this.setState({title: e.currentTarget.value});};
+    return e => {this.props.setContentState({title: e.currentTarget.value});};
   }
 
   handleKeyCommand(command) {
@@ -39,7 +36,7 @@ class Workspace extends React.Component {
     return () => {
       const rawContent = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
       const note = {
-        title: this.state.title,
+        title: this.props.editorState.title,
         body: rawContent,
         notebook_id: this.props.activeState.currentNotebook.id
       };
@@ -59,7 +56,7 @@ class Workspace extends React.Component {
           <input className={"note-title-input"}
             type="text"
             placeholder="Title your note"
-            value= {this.state.title}
+            value= {this.props.editorState.title}
             onChange={this.update("title")} />
         </div>
         <div className="editor-container" onClick={this.focus}>

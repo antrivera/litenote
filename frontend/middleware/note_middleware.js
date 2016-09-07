@@ -16,7 +16,6 @@ const NoteMiddleware = ({getState, dispatch}) => next => action => {
       NoteAPI.fetchNote(action.note, receiveNoteSuccess, error);
       break;
     case NoteConstants.CREATE_NOTE:
-      debugger;
       NoteAPI.createNote(action.note, createNoteSuccess, error);
       break;
     default:
