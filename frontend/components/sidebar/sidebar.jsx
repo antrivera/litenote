@@ -31,6 +31,8 @@ class Sidebar extends React.Component {
   fetchNoteContent(note) {
     this.props.fetchNote(note);
     this.props.displayNoteContent(note);
+    debugger;
+    this.props.loadEditorContent(note);
   }
 
   fetchNotebookContents(notebook) {
