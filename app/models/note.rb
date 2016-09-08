@@ -15,6 +15,10 @@ class Note < ActiveRecord::Base
 
   belongs_to :notebook
 
+  has_many :taggings
+
+  has_many :tags, through: :taggings, source: :tag
+
   def self.owned_by(user)
     current_user = User.find(user.id)
     user_notes = []
