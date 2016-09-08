@@ -25,3 +25,13 @@ export const createNote = (data, success, error) => {
     error
   });
 };
+
+export const updateNote = (data, success, error) => {
+  $.ajax({
+    method: 'PATCH',
+    url: `api/notes/${data.note.id}`,
+    data: {note: data.note.details},
+    success,
+    error
+  });
+};

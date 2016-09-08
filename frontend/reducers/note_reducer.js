@@ -1,5 +1,5 @@
 import { NoteConstants } from '../actions/note_actions';
-import { merge } from 'lodash';
+import { merge, union } from 'lodash';
 
 const NoteReducer = (state= [], action) => {
   switch (action.type) {
@@ -9,6 +9,9 @@ const NoteReducer = (state= [], action) => {
       return [...state, action.note];
     case NoteConstants.CLEAR_NOTES_STATE:
       return [];
+    case NoteConstants.RECEIVE_UPDATE:
+      const oldState = state.filter(note => note.id !== action.note.id);
+      return [action.note, ...oldState];
     case NoteConstants.RECEIVE_ERRORS:
       // TODO: error state structure
     default:

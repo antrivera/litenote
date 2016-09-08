@@ -36,12 +36,14 @@ class Workspace extends React.Component {
     return () => {
       const rawContent = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
       const note = {
-        title: this.props.editorState.title,
-        body: rawContent,
-        notebook_id: this.props.activeState.currentNotebook.id
+        id: this.props.activeState.activeNote.id,
+        details: {
+          title: this.props.editorState.title,
+          body: rawContent,
+          notebook_id: this.props.activeState.activeNote.notebook_id
+        }
       };
-
-      this.props.createNote({note});
+      this.props.updateNote({note});
     }
   }
 

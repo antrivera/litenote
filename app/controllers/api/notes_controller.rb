@@ -28,6 +28,13 @@ class Api::NotesController < ApplicationController
   end
 
   def update
+    @note = Note.find(params[:id])
+
+    if (@note.notebook.author_id == current_user.id) && @note.update(note_params)
+      render json: @note
+    else
+      render json: @note.errors.full_messages, status: 422
+    end
   end
 
   def destroy
