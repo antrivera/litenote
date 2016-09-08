@@ -40,7 +40,7 @@ class Api::NotebooksController < ApplicationController
 
     if @notebook.author_id == current_user.id
       @notebook.delete
-      render json: @notebook
+      render json: Notebook.owned_by(current_user)
     else
       render json: @notebook.errors.full_messages, status: 422
     end

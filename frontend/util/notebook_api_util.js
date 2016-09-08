@@ -25,3 +25,12 @@ export const createNotebook = (data, success, error) => {
     error
   });
 };
+
+export const deleteNotebook = (notebook, success, error) => {
+  $.ajax({
+    method: 'DELETE',
+    url: `api/notebooks/${notebook.id}`,
+    success,
+    error
+  });
+};

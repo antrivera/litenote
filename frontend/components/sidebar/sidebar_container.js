@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
-import { fetchAllNotebooks, fetchNotebook } from '../../actions/notebook_actions';
+import { fetchAllNotebooks, fetchNotebook, deleteNotebook } from '../../actions/notebook_actions';
 import { fetchAllNotes, fetchNote, deleteNote } from '../../actions/note_actions';
 import { setContentState, loadEditorContent, emptyContentState } from '../../actions/editor_actions';
 import * as ActiveStateActions from '../../actions/active_state_actions';
@@ -17,6 +17,7 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
   fetchAllNotebooks: () => dispatch(fetchAllNotebooks()),
   fetchNotebook: notebook => dispatch(fetchNotebook(notebook)),
+  deleteNotebook: notebook => dispatch(deleteNotebook(notebook)),
   fetchAllNotes: () => dispatch(fetchAllNotes()),
   fetchNote: note => dispatch(fetchNote(note)),
   deleteNote: note => dispatch(deleteNote(note)),

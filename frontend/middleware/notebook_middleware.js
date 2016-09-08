@@ -15,8 +15,11 @@ const NotebookMiddleware = ({getState, dispatch}) => next => action => {
       NotebookAPI.fetchNotebook(action.notebook, requestNotebookSuccess, error);
       break;
     case NotebookConstants.CREATE_NOTEBOOK:
-    const createNotebookSucces = notebook => dispatch(receiveNotebook(notebook));
+      const createNotebookSucces = notebook => dispatch(receiveNotebook(notebook));
       NotebookAPI.createNotebook(action.notebook, createNotebookSucces, error);
+      break;
+    case NotebookConstants.DESTROY_NOTEBOOK:
+      NotebookAPI.deleteNotebook(action.notebook, success, error);
       break;
     default:
       break;

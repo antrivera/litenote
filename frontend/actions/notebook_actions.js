@@ -4,6 +4,7 @@ export const NotebookConstants = {
   CREATE_NOTEBOOK: "CREATE_NOTEBOOK",
   RECEIVE_NOTEBOOKS: "RECEIVE_NOTEBOOKS",
   RECEIVE_NOTEBOOK: "RECEIVE_NOTEBOOK",
+  DESTROY_NOTEBOOK: "DESTROY_NOTEBOOK",
   RECEIVE_ERRORS: "RECEIVE_ERRORS",
   CLEAR_NOTEBOOKS_STATE: "CLEAR_NOTEBOOKS_STATE"
 };
@@ -29,6 +30,11 @@ export const receiveAllNotebooks = notebooks => ({
 
 export const receiveNotebook = notebook => ({
   type: NotebookConstants.RECEIVE_NOTEBOOK,
+  notebook
+});
+
+export const deleteNotebook = notebook => ({
+  type: NotebookConstants.DESTROY_NOTEBOOK,
   notebook
 });
 
