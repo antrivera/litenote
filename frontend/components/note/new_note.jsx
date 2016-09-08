@@ -1,4 +1,5 @@
 import React from 'react';
+import { ContentState, convertToRaw } from 'draft-js';
 import { hashHistory } from 'react-router';
 
 class NewNote extends React.Component {
@@ -7,6 +8,7 @@ class NewNote extends React.Component {
 
     this.state = {
       title: "",
+      body: JSON.stringify(convertToRaw(ContentState.createFromText(""))),
       notebook: this.props.activeState.currentNotebook
     };
 
@@ -17,6 +19,7 @@ class NewNote extends React.Component {
     e.preventDefault();
     const note = {
       title: this.state.title,
+      body: this.state.body,
       notebook_id: this.state.notebook.id
     }
 

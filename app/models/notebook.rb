@@ -19,7 +19,7 @@ class Notebook < ActiveRecord::Base
     foreign_key: :author_id
   )
 
-  has_many :notes
+  has_many :notes, dependent: :destroy
 
   def self.owned_by(user)
     current_user = User.find(user.id)

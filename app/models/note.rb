@@ -13,7 +13,7 @@
 class Note < ActiveRecord::Base
   validates :title, :notebook_id, presence: true
 
-  belongs_to :notebook, dependent: :destroy
+  belongs_to :notebook
 
   def self.owned_by(user)
     current_user = User.find(user.id)
