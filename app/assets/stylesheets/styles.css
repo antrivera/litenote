@@ -114,6 +114,7 @@ button {
   color: #1abc9c;
   width: 45px;
   height: 45px;
+  margin-right: 0;
 }
 
 .side-menu-container {
@@ -208,6 +209,13 @@ button {
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: 95%;
   mask-image: url(new-note.svg);
+}
+
+#tag-btn {
+  -webkit-mask-image: url(tag.svg);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100%;
+  mask-image: url(tag.svg);
 }
 
 .note-item-btns {

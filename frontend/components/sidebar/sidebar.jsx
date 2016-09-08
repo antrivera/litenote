@@ -71,6 +71,7 @@ class Sidebar extends React.Component {
             <button className="sidebar-btn" id="new-note-btn" onClick={this.createNewNote}></button>
             <button className="sidebar-btn" id="note-btn" onClick={this.fetchAllNotes}></button>
             <button className="sidebar-btn" id="notebook-btn" onClick={this.fetchAllNotebooks}></button>
+            <button className="sidebar-btn" id="tag-btn"></button>
           </div>
           <div id="logout-btn-dummy">
             <button className="sidebar-btn" id="logout-btn" onClick={this.logoutAndRedirect}></button>
