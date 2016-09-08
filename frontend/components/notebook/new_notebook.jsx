@@ -23,7 +23,6 @@ class NewNotebook extends React.Component {
   }
 
   update(field) {
-    console.log(this.state.title);
     return e => {this.setState({title: e.currentTarget.value});};
   }
 
