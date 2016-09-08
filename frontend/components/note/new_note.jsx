@@ -33,7 +33,7 @@ class NewNote extends React.Component {
   }
 
   cancel() {
-    hashHistory.push('/home');
+    hashHistory.goBack();
   }
 
   render() {

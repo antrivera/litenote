@@ -22,6 +22,8 @@ const NoteMiddleware = ({getState, dispatch}) => next => action => {
     case NoteConstants.UPDATE_NOTE:
       NoteAPI.updateNote(action.note, updateNoteSuccess, error);
       break;
+    case NoteConstants.DESTROY_NOTE:
+      NoteAPI.deleteNote(action.note, success, error);
     default:
       break;
   }

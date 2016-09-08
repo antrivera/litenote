@@ -38,6 +38,15 @@ class Api::NotesController < ApplicationController
   end
 
   def destroy
+    @note = Note.find(params[:id])
+
+    if @note.notebook.author_id == current_user.id
+      @note.delete
+      notes = Note.owned_by(current_user)
+      render json: notes
+    else
+      render json: @note.error.full_messages, status: 422
+    end
   end
 
   private

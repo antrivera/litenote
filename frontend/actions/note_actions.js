@@ -7,6 +7,7 @@ export const NoteConstants = {
   RECEIVE_NOTES: "RECEIVE_NOTES",
   RECEIVE_NOTE: "RECEIVE_NOTE",
   RECEIVE_ERRORS: "RECEIVE_ERRORS",
+  DESTROY_NOTE: "DESTROY_NOTE",
   CLEAR_NOTES_STATE: "CLEAR_NOTES_STATE",
 };
 
@@ -47,6 +48,11 @@ export const receiveNote = note => ({
 export const receiveErrors = errors => ({
   type: NoteConstants.RECEIVE_ERRORS,
   errors
+});
+
+export const deleteNote = note => ({
+  type: NoteConstants.DESTROY_NOTE,
+  note
 });
 
 export const clearNotesState = () => ({

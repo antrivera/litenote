@@ -13,6 +13,7 @@ class Sidebar extends React.Component {
     this.fetchNotebookContents = this.fetchNotebookContents.bind(this);
     this.fetchNoteContent = this.fetchNoteContent.bind(this);
     this.createNewNote = this.createNewNote.bind(this);
+    this.deleteNote = this.deleteNote.bind(this);
   }
 
   componentDidMount() {
@@ -21,6 +22,10 @@ class Sidebar extends React.Component {
 
   createNewNote() {
     hashHistory.push('/new-note');
+  }
+
+  deleteNote(note) {
+    this.props.deleteNote(note);
   }
 
   fetchAllNotebooks() {
@@ -70,7 +75,8 @@ class Sidebar extends React.Component {
         {this.props.activeState.notes ?
           <NoteIndex notes={this.props.notes}
             notebook={this.props.activeState.currentNotebook}
-            fetchNoteContent={this.fetchNoteContent} /> :
+            fetchNoteContent={this.fetchNoteContent}
+            deleteNote={this.deleteNote} /> :
           <NotebookIndex
             notebooks={this.props.notebooks}
             fetchNotebookContents={this.fetchNotebookContents} /> }

@@ -35,3 +35,12 @@ export const updateNote = (data, success, error) => {
     error
   });
 };
+
+export const deleteNote = (note, success, error) => {
+  $.ajax({
+    method: 'DELETE',
+    url: `api/notes/${note.id}`,
+    success,
+    error
+  });
+};

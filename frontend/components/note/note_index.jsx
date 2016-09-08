@@ -5,10 +5,16 @@ class NoteIndex extends React.Component {
     super(props);
 
     this.displayNote = this.displayNote.bind(this);
+    this.deleteNote = this.deleteNote.bind(this);
   }
 
   displayNote(note) {
     this.props.fetchNoteContent(note);
+  }
+
+  deleteNote(note, event) {
+    event.stopPropagation();
+    this.props.deleteNote(note);
   }
 
   noteTitles() {
@@ -16,6 +22,9 @@ class NoteIndex extends React.Component {
       <li key={note.title + idx}>
         <div className="note-list-item" onClick={ this.displayNote.bind(null, note)}>
           {note.title}
+          <div className="note-item-btns">
+            <button className="delete-btn sidebar-btn" onClick={ this.deleteNote.bind(null, note)}></button>
+          </div>
         </div>
       </li>
     ));

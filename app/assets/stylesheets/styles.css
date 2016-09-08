@@ -206,6 +206,28 @@ button {
   mask-image: url(new-note.svg);
 }
 
+.note-item-btns {
+  height: 75%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+}
+
+.delete-btn {
+  background: gainsboro;
+  color: white;
+  width: 35px;
+  height: 35px;
+  -webkit-mask-image: url(delete.svg);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100%;
+  mask-image: url(delete.svg);
+}
+
+.delete-btn:hover {
+  background: #1abc9c;
+}
+
 .reactnote-logo {
   height: 200%;
   background: #5a5a5a;
