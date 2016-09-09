@@ -14,6 +14,17 @@ class Api::TagsController < ApplicationController
   end
 
   def show
+    @tag = Tag.find(params[:id])
+
+    if @tag
+      tagged_notes = []
+      @tag.notes.each do |note|
+        tagged_notes << note if note.notebook.author_id == current_user.id
+      end
+      render json: tagged_notes
+    else
+      render json: @tag.errors.full_messages, status: 422
+    end
   end
 
   def destroy

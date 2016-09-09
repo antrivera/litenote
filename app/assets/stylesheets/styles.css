@@ -449,6 +449,14 @@ button:hover {
   padding: 15px;
 }
 
+.tag-name-input {
+  width: 95%;
+  height: 50px;
+  font-size: 14px;
+  color: #1abc9c;
+  border: none;
+}
+
 .tag-title-input {
   width: 60%%;
   min-width: 150px;
@@ -468,6 +476,10 @@ button:hover {
   width: 30px;
   height: 23px;
   border: none;
+}
+
+.new-tag-btn-hide {
+  display: none;
 }
 
 .new-tag-btn:hover {

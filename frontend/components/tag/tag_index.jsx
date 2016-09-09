@@ -3,12 +3,18 @@ import React from 'react';
 class TagIndex extends React.Component {
   constructor(props) {
     super(props);
+
+    this.displayTaggedNotes = this.displayTaggedNotes.bind(this);
+  }
+
+  displayTaggedNotes(tag) {
+    this.props.fetchTaggedNotes(tag);
   }
 
   tagNames() {
     return this.props.tags.map((tag, idx) => (
       <li key={tag.name + idx}>
-        <div className="notebook-list-item">
+        <div className="notebook-list-item" onClick={ this.displayTaggedNotes.bind(null, tag) }>
           <div className="notebook-title">
             {tag.name}
           </div>

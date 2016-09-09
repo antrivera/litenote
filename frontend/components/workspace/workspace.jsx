@@ -2,6 +2,7 @@ import React from 'react';
 import BlockStyleControls from './block_style_controls';
 import InlineStyleControls from './inline_style_controls';
 import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, ContentState } from 'draft-js';
+import { hashHistory } from 'react-router';
 
 class Workspace extends React.Component {
   constructor(props) {
@@ -9,13 +10,15 @@ class Workspace extends React.Component {
     this.username = this.props.currentUser.username;
 
     this.state = {
-      editorState: this.props.editorState.editorState,
+      name: "",
+      editorState: this.props.editorState.editorState
     };
 
     this.focus = () => this.refs.editor.focus();
     this.onChange = editorState => this.props.setContentState({editorState});
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
     this.saveNoteContents = this.saveNoteContents.bind(this);
+    this.createNewTag = this.createNewTag.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onTab = e => this._onTab(e);
     this.toggleBlockType = type => this._toggleBlockType(type);
@@ -23,6 +26,9 @@ class Workspace extends React.Component {
   }
 
   update(field) {
+    if (field === "name") {
+      return e => {this.setState({name: e.currentTarget.value})};
+    }
     return e => {this.props.setContentState({title: e.currentTarget.value});};
   }
 
@@ -70,6 +76,10 @@ class Workspace extends React.Component {
     );
   }
 
+  createNewTag(saveNoteContents) {
+    hashHistory.push("/new-tag");
+  }
+
   saveNoteContents({editorState}) {
     return () => {
       const rawContent = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
@@ -79,7 +89,7 @@ class Workspace extends React.Component {
           title: this.props.editorState.title,
           body: rawContent,
           notebook_id: this.props.activeState.activeNote.notebook_id,
-          tags: ["IT WORKS", "wow!"]
+          tags: [this.state.name]
         }
       };
       this.props.updateNote({note});
@@ -89,6 +99,7 @@ class Workspace extends React.Component {
   render() {
     const { editorState } = this.props.editorState;
 
+    let newTagClassName = 'note-tag-display';
     let className = 'editor-container';
     var contentState = editorState.getCurrentContent();
     if (!contentState.hasText()) {
@@ -105,9 +116,20 @@ class Workspace extends React.Component {
             <div className="notebook-icon"></div>
             <p className="workspace-notebook-title">{this.props.activeState.currentNotebook.title}</p>
             <div className="tag-icon"></div>
-            <div className="note-tag-display-hide">
-              <button className="new-tag-btn">+</button>
+            <div className="note-tag-display">
+              {
+                !this.props.activeState.activeNote ? <button className="new-tag-btn-hide">+</button> :
+                  <div className="new-tag-container">
+                    <input className={"tag-name-input"}
+                      type="text"
+                      placeholder="Tag name..."
+                      value= {this.state.name}
+                      ref="tag-name"
+                      onChange={this.update("name")} />
+                  </div>
+              }
             </div>
+            <div className="active-note-tags"></div>
           </div>
 
           <div className="rich-text-editor">

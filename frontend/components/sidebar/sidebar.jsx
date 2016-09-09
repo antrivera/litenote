@@ -14,6 +14,7 @@ class Sidebar extends React.Component {
     this.fetchAllTags = this.fetchAllTags.bind(this);
     this.fetchNotebookContents = this.fetchNotebookContents.bind(this);
     this.fetchNoteContent = this.fetchNoteContent.bind(this);
+    this.fetchTaggedNotes = this.fetchTaggedNotes.bind(this);
     this.createNewNote = this.createNewNote.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
     this.deleteNotebook = this.deleteNotebook.bind(this);
@@ -61,6 +62,11 @@ class Sidebar extends React.Component {
     this.props.displayNotebookContent(notebook);
   }
 
+  fetchTaggedNotes(tag) {
+    this.props.fetchTaggedNotes(tag);
+    this.props.displayTaggedNotes(tag);
+  }
+
   logoutAndRedirect(logout) {
     this.props.logout();
     hashHistory.push('/');
@@ -84,7 +90,8 @@ class Sidebar extends React.Component {
     } else {
       content =
         <TagIndex
-          tags={this.props.tags} />
+          tags={this.props.tags}
+          fetchTaggedNotes={this.fetchTaggedNotes} />
     }
 
     return content;

@@ -30,6 +30,8 @@ const ActiveStateReducer = (state= defaultActiveState, action) => {
         }
       };
       return merge({}, defaultActiveState, notebookContentActive);
+    case ActiveStateConstants.TAG_ACTIVE:
+      return defaultActiveState;
     case ActiveStateConstants.ACTIVE_NOTE:
       return merge({}, state, {activeNote: action.note});
     default:
