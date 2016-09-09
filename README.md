@@ -1,121 +1,47 @@
 # Litenote
 
-[Heroku link][heroku]
+[Litenote live][heroku]
 
-[heroku]: http://www.herokuapp.com
+[heroku]: https://react-note-app.herokuapp.com
 
-## Minimum Viable Product
+Litenote is a full-stack web application inspired by Evernote.  It utilizes Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Redux architectural framework on the frontend.  
 
-Litenote is a web application inspired by Evernote built using Ruby on Rails and React/Redux.  By the end of Week 9, this app will, at a minimum, satisfy the following criteria with smooth, bug-free navigation, adequate seed data and sufficient CSS styling:
+## Features & Implementation
 
-- [ ] Hosting on Heroku
-- [ ] New account creation, login, and guest/demo login
-- [ ] Notes
-- [ ] Notebooks for organizing notes
-- [ ] Tags
-- [ ] Rich Text Editing
-- [ ] Search by content/notebook/tag
-- [ ] Production README [sample](docs/production_readme.md)
+### Single-Page App
 
-## Design Docs
-* [View Wireframes][wireframes]
-* [React Components][components]
-* [API endpoints][api-endpoints]
-* [DB schema][schema]
-* [Redux Structure][redux-structure]
-* [Sample State][sample-state]
+Litenote is a true single-page app: all content is delivered on one static page and updated dynamically. The user is greeted with a splash page prompting them to sign-up or login, and from there they are taken to the home path which displays the workspace and a sidebar menu allowing them to perform various actions.  Users can create notes, notebooks to organize their notes, and tags to group notes by common themes or content across notebooks.
 
-[wireframes]: docs/wireframes
-[components]: docs/component-heirarchy.md
-[redux-structure]: docs/redux-structure.md
-[sample-state]: docs/sample-state.md
-[api-endpoints]: docs/api-endpoints.md
-[schema]: docs/schema.md
+### Note Rendering and Editing
 
-## Implementation Timeline
+  Notes are stored on the back-end in a single table in the database and contain a foreign key to the notebook that they belong to, as well as information such as their id, title, and body.  Notes have associations to their tags through a taggings join table which allows all of the tags for a given note to be acquired.
 
-### Phase 1: Backend setup and Front End User Authentication (2 days)
+  Notes are rendered in the Workspace component and their titles are also rendered in the Sidebar component as part of the NoteIndex component, allowing users to browse notes and select the one with the title they wish to view and/or edit.
 
-**Objective:** Functioning rails project with front-end Authentication
 
-- [ ] New Rails project
-- [ ] `User` model/migration
-- [ ] Back end authentication (session/password)
-- [ ] `StaticPages` controller and root view
-- [ ] Webpack & react/redux modules
-- [ ] `APIUtil` to interact with the API
-- [ ] Redux cycle for frontend authentication
-- [ ] User signup/signin components
-- [ ] Blank landing component after signup/signin
-- [ ] Sidebar component
-- [ ] Style signup/signin and sidebar components
-- [ ] Seed users
-- [ ] Review phase 1
+Note editing is implemented using the Draft.js library, providing users with the core rich-text-editing functionality that they are accustomed to.
 
-### Phase 2: Notes Model, API, and components (2 days)
+### Notebooks
 
-**Objective:** Notes can be created, read, edited and destroyed through
-the API.
+Notebooks have their own table in the database and have columns for their id, title, and author_id.  The author_id allows notebooks to be linked to the users who own them.  They interact with notes through a has_many association.
 
-- [ ] `Note` model
-- [ ] Seed database with a small amount of test data
-- [ ] CRUD API for notes (`NotesController`)
-- [ ] JBuilder views for notes
-- Note components and respective Redux loops
-  - [ ] `NotesIndex`
-  - [ ] `NoteIndexItem`
-  - [ ] `NoteForm`
-- [ ] Style notes components
-- [ ] Seed notes
-- [ ] Autosave notes feature [depending on progress]
+The React component structure for notebooks is very similar to that of notes, however a notebook does note get rendered in the Workspace Draft.js editor.  When a notebook is selected in the sidemenu, the notes that belong to it are promptly displayed.
 
-### Phase 3: Notebooks (2 days)
+### Tags
 
-**Objective:** Notes belong to Notebooks that can be created, read, edited and destroyed through the API.
+Tags have a table in the database, but they are connected to notes through a Taggings join table.  Tags themselves merely have a name column, while taggings have two foreign keys: note_id and tag_id.
 
-- [ ] `Notebook` model
-- [ ] Seed database with a small amount of test data
-- [ ] CRUD API for notes (`NotebooksController`)
-- [ ] JBuilder views for notebooks
-- [ ] Notes placed in 'General' notebook by default
-- [ ] Moving notes between notebooks
-- [ ] Viewing notes by notebook
-- [ ] Style notebook components
-- [ ] Seed notebooks
+On the front-end, tags are very similar to notebooks in that they can be displayed in the sidemenu component, and when selected all notes with that particular tag are then displayed.
 
-### Phase 4: Tags and Preliminary Styling (1 day)
 
-**Objective:** Notes can be tagged with multiple tags
+## Future Directions for the Project
 
-- [ ] `Tag` model and `Taggings` join table
-- [ ] Fetching tags for notes
-- [ ] Adding tags to notes
-- [ ] Style components into general structure to be present in final product
-- [ ] Seed tags with seed data
+In addition to the features already implemented, I plan to continue work on this project.  The next steps for Litenote are outlined below.
 
-### Phase 5: Allow Complex Styling in Notes (1 days, W2 Th 6pm)
+### Advanced RTE
 
-**Objective:** Allow rich text editing of notes.
+Draft.js is a powerful library with many capabilities, and in the future I would like to make use of it to display pictures, videos, and more text-editing options.
 
-- [ ] Integrate `draft-js` (Draft.js RTE framework for React).
-- [ ] Rails helpers to sanitize HTML before rendering.
-- [ ] Style Draft.js components.
-- [ ] Add Draft.js styling to seeded notes
+### Shared Notes
 
-### Phase 6: - Search and Final Styling (1 day, W2 F 6pm)
-
-**Objective:** Add search and complete styling
-
-- [ ] Search by note content, notebook, and tags
-- [ ] Implement search redux cycle
-- [ ] Auto display search results as user types, organized by result category (note/notebook/tag)
-
-### Bonus Features (TBD)
-- [ ] Infinite Scroll / Pagination
-- [ ] Publish/Share notes with other users
-- [ ] Set reminders on notes
-- [ ] Implement a slider to revert to previous saved versions of notes
-- [ ] Support for pictures/videos/audio
-- [ ] Toggle grid view of notes / notebooks
-- [ ] Integration with Dropbox
-- [ ] Multiple sessions
+I would like to allow users to share notes with each other through a shared notebook and user search.
