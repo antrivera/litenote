@@ -43,7 +43,7 @@ class Splash extends React.Component {
         <div id="splash-container">
           <div id="splash-content">
             <div id="splah-content-text">
-              <h1 id="splash-title">Reactnote</h1>
+              <h1 id="splash-title">Litenote</h1>
               <h2 id="splash-description">Write it down.</h2>
             </div>
             <div id="sign-up-btn-container">

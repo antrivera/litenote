@@ -76,6 +76,14 @@ button {
   margin-right: 20px;
 }
 
+button:hover {
+  background: white;
+  border: 2px solid #1abc9c;
+  color: #1abc9c;
+  text-shadow: none;
+  box-shadow: none;
+}
+
 .navbar {
   top: 0;
   display: flex;
@@ -115,6 +123,12 @@ button {
   width: 45px;
   height: 45px;
   margin-right: 0;
+}
+
+.sidebar-btn:hover {
+  /*background: #5890ff;*/
+  width: 55px;
+  height: 55px;
 }
 
 .side-menu-container {
@@ -185,6 +199,17 @@ button {
   margin: 0 15px 0 15px;
 }
 
+.workspace-header-info {
+  display: flex;
+  align-items: center;
+}
+
+.workspace-notebook-title {
+  margin-left: 5px;
+  margin-right: 15px;
+  display: inline;
+}
+
 .text-area {
   height: 100%;
   width: 100%;
@@ -209,6 +234,7 @@ button {
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: 95%;
   mask-image: url(new-note.svg);
+  margin-bottom: 15px;
 }
 
 #tag-btn {
@@ -216,6 +242,28 @@ button {
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: 100%;
   mask-image: url(tag.svg);
+}
+
+.notebook-icon {
+  -webkit-mask-image: url(notebook.svg);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100%;
+  mask-image: url(notebook.svg);
+  height: 25px;
+  width: 25px;
+  margin-top: 5px;
+  background: #1abc9c;
+}
+
+.tag-icon {
+  -webkit-mask-image: url(tag.svg);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100%;
+  mask-image: url(tag.svg);
+  height: 25px;
+  width: 25px;
+  margin-top: 5px;
+  background: #1abc9c;
 }
 
 .note-item-btns {
@@ -245,9 +293,12 @@ button {
 
 .delete-btn:hover {
   background: #1abc9c;
+  height: 35px;
+  width: 35px;
 }
 
 .reactnote-logo {
+  /*margin-top: 10px;*/
   height: 200%;
   background: #5a5a5a;
   -webkit-mask-image: url(reactnote-logo.svg);
@@ -385,6 +436,37 @@ button {
   border: none;
   padding: 15px;
 }
+
+.tag-title-input {
+  width: 60%%;
+  min-width: 150px;
+  height: 10px;
+  font-size: 14px;
+  color: #1abc9c;
+  border: none;
+  background: whitesmoke;
+  padding: 15px;
+}
+
+.new-tag-btn {
+  color: #999;
+  background: whitesmoke;
+  text-shadow: none;
+  box-shadow: none;
+  width: 30px;
+  height: 23px;
+  border: none;
+}
+
+.new-tag-btn:hover {
+  border: none;
+  background: whitesmoke;
+}
+
+.new-tag-btn:focus {
+  outline: none;
+}
+
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color: #1abc9c;

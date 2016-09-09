@@ -99,7 +99,16 @@ class Workspace extends React.Component {
     return (
       <div className="workspace-container">
         <div className="workspace-header">
-          <p>{this.props.activeState.currentNotebook.title}</p>
+
+          <div className="workspace-header-info">
+            <div className="notebook-icon"></div>
+            <p className="workspace-notebook-title">{this.props.activeState.currentNotebook.title}</p>
+            <div className="tag-icon"></div>
+            <div className="note-tag-display-hide">
+              <button className="new-tag-btn">+</button>
+            </div>
+          </div>
+
           <div className="rich-text-editor">
             <BlockStyleControls
               editorState={ editorState }
@@ -111,6 +120,7 @@ class Workspace extends React.Component {
             />
           </div>
         </div>
+
         <div className="note-title-container">
           <input className={"note-title-input"}
             type="text"
@@ -120,6 +130,7 @@ class Workspace extends React.Component {
             onChange={this.update("title")} />
             <button className="save-btn" onClick={this.saveNoteContents({editorState})}>Save</button>
         </div>
+        
         <div className={ className } onClick={this.focus}>
           <Editor
             editorState={ editorState }
