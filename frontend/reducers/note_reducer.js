@@ -12,6 +12,11 @@ const NoteReducer = (state= [], action) => {
     case NoteConstants.RECEIVE_UPDATE:
       const oldState = state.filter(note => note.id !== action.note.id);
       return [action.note, ...oldState];
+    case NoteConstants.FILTER_NOTES:
+      const filteredNotes = action.notes.filter(
+        note => note.title.toLowerCase().includes(action.term.toLowerCase())
+      )
+      return filteredNotes;
     case NoteConstants.RECEIVE_ERRORS:
       // TODO: error state structure
     default:

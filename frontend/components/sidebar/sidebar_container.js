@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 import { fetchAllNotebooks, fetchNotebook, deleteNotebook } from '../../actions/notebook_actions';
-import { fetchAllNotes, fetchNote, deleteNote } from '../../actions/note_actions';
+import { fetchAllNotes, fetchNote, deleteNote, filterNotes } from '../../actions/note_actions';
 import { fetchAllTags, fetchTaggedNotes } from '../../actions/tag_actions';
 import { setContentState, loadEditorContent, emptyContentState } from '../../actions/editor_actions';
 import * as ActiveStateActions from '../../actions/active_state_actions';
@@ -33,7 +33,8 @@ const mapDispatchToProps = dispatch => ({
   displayNoteContent: note => dispatch(ActiveStateActions.displayNoteContent(note)),
   setContentState: content => dispatch(setContentState(content)),
   loadEditorContent: content => dispatch(loadEditorContent(content)),
-  emptyContentState: () => dispatch(emptyContentState())
+  emptyContentState: () => dispatch(emptyContentState()),
+  filterNotes: (term, notes) => dispatch(filterNotes(term, notes))
 });
 
 export default connect(

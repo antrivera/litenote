@@ -6,6 +6,11 @@ class NoteIndex extends React.Component {
 
     this.displayNote = this.displayNote.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
+    this.filterResults = this.filterResults.bind(this);
+
+    this.state = {
+      term: ""
+    };
   }
 
   displayNote(note) {
@@ -15,6 +20,13 @@ class NoteIndex extends React.Component {
   deleteNote(note, event) {
     event.stopPropagation();
     this.props.deleteNote(note);
+  }
+
+  filterResults() {
+    return e => {
+      this.setState({term: e.currentTarget.value});
+      this.props.filterSearchResults(e.currentTarget.value);
+    }
   }
 
   noteTitles() {
@@ -37,6 +49,11 @@ class NoteIndex extends React.Component {
       <div className="side-menu-container">
         <div className="header-container">
           <h2>{`${this.props.notebook.title}`}</h2>
+            <input className={"search-term-input"}
+              type="text"
+              placeholder="Search..."
+              value={this.state.term}
+              onChange={this.filterResults()} />
         </div>
         <ul>
           { this.noteTitles() }

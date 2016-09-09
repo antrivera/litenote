@@ -457,6 +457,14 @@ button:hover {
   border: none;
 }
 
+.search-term-input {
+  width: 75%;
+  height: 35px;
+  font-size: 14px;
+  color: #1abc9c;
+  border: none;
+}
+
 .tag-title-input {
   width: 60%;
   min-width: 150px;

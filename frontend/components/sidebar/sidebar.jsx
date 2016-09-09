@@ -18,6 +18,7 @@ class Sidebar extends React.Component {
     this.createNewNote = this.createNewNote.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
     this.deleteNotebook = this.deleteNotebook.bind(this);
+    this.filterSearchResults = this.filterSearchResults.bind(this);
   }
 
   componentDidMount() {
@@ -72,6 +73,10 @@ class Sidebar extends React.Component {
     hashHistory.push('/');
   }
 
+  filterSearchResults(term) {
+    this.props.filterNotes(term, this.props.notes);
+  }
+
   displaySideMenuContent() {
     let content;
 
@@ -80,6 +85,7 @@ class Sidebar extends React.Component {
         <NoteIndex notes={this.props.notes}
           notebook={this.props.activeState.currentNotebook}
           fetchNoteContent={this.fetchNoteContent}
+          filterSearchResults={this.filterSearchResults}
           deleteNote={this.deleteNote} />
     } else if (this.props.activeState.notebooks) {
       content =

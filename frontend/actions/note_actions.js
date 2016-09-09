@@ -3,6 +3,7 @@ export const NoteConstants = {
   REQUEST_NOTE: "REQUEST_NOTE",
   CREATE_NOTE: "CREATE_NOTE",
   UPDATE_NOTE: "UPDATE_NOTE",
+  FILTER_NOTES: "FILTER_NOTES",
   RECEIVE_UPDATE: "RECEIVE_UPDATE",
   RECEIVE_NOTES: "RECEIVE_NOTES",
   RECEIVE_NOTE: "RECEIVE_NOTE",
@@ -57,4 +58,10 @@ export const deleteNote = note => ({
 
 export const clearNotesState = () => ({
   type: NoteConstants.CLEAR_NOTES_STATE
+});
+
+export const filterNotes = (term, notes) => ({
+  type: NoteConstants.FILTER_NOTES,
+  term,
+  notes
 });
