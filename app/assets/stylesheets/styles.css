@@ -237,6 +237,10 @@ button:hover {
   margin-bottom: 15px;
 }
 
+#new-note-btn-hidden {
+  display: none;
+}
+
 #tag-btn {
   -webkit-mask-image: url(tag.svg);
   -webkit-mask-repeat: no-repeat;

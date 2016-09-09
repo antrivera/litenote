@@ -112,7 +112,8 @@ class Sidebar extends React.Component {
           </div>
 
           <div className="sidebar-btn-group">
-            <button className="sidebar-btn" id="new-note-btn" onClick={this.createNewNote}></button>
+            <button className="sidebar-btn" id={this.props.activeState.currentNotebook.id ? "new-note-btn" :
+              "new-note-btn-hidden" } onClick={this.createNewNote}></button>
             <button className="sidebar-btn" id="note-btn" onClick={this.fetchAllNotes}></button>
             <button className="sidebar-btn" id="notebook-btn" onClick={this.fetchAllNotebooks}></button>
             <button className="sidebar-btn" id="tag-btn" onClick={this.fetchAllTags}></button>
