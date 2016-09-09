@@ -395,6 +395,18 @@ button:hover {
   z-index: 1
 }
 
+.tag-index-container {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  margin-left: 74px;
+  width: 500px;
+  border-right: 1px solid gainsboro;
+  overflow-y: scroll;
+  background: white;
+  z-index: 1
+}
+
 .editor-container {
   position: fixed;
   height: 70%;

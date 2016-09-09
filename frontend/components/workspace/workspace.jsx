@@ -78,7 +78,8 @@ class Workspace extends React.Component {
         details: {
           title: this.props.editorState.title,
           body: rawContent,
-          notebook_id: this.props.activeState.activeNote.notebook_id
+          notebook_id: this.props.activeState.activeNote.notebook_id,
+          tags: ["IT WORKS", "wow!"]
         }
       };
       this.props.updateNote({note});
@@ -130,7 +131,7 @@ class Workspace extends React.Component {
             onChange={this.update("title")} />
             <button className="save-btn" onClick={this.saveNoteContents({editorState})}>Save</button>
         </div>
-        
+
         <div className={ className } onClick={this.focus}>
           <Editor
             editorState={ editorState }

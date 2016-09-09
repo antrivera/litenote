@@ -1,6 +1,7 @@
 import React from 'react';
 import NotebookIndex from '../notebook/notebook_index';
 import NoteIndex from '../note/note_index';
+import TagIndex from '../tag/tag_index';
 import { Link, hashHistory } from 'react-router';
 
 class Sidebar extends React.Component {
@@ -10,6 +11,7 @@ class Sidebar extends React.Component {
     this.logoutAndRedirect = this.logoutAndRedirect.bind(this);
     this.fetchAllNotebooks = this.fetchAllNotebooks.bind(this);
     this.fetchAllNotes = this.fetchAllNotes.bind(this);
+    this.fetchAllTags = this.fetchAllTags.bind(this);
     this.fetchNotebookContents = this.fetchNotebookContents.bind(this);
     this.fetchNoteContent = this.fetchNoteContent.bind(this);
     this.createNewNote = this.createNewNote.bind(this);
@@ -43,6 +45,11 @@ class Sidebar extends React.Component {
     this.props.displayAllNotes();
   }
 
+  fetchAllTags() {
+    this.props.fetchAllTags();
+    this.props.displayAllTags();
+  }
+
   fetchNoteContent(note) {
     this.props.fetchNote(note);
     this.props.displayNoteContent(note);
@@ -59,6 +66,30 @@ class Sidebar extends React.Component {
     hashHistory.push('/');
   }
 
+  displaySideMenuContent() {
+    let content;
+
+    if (this.props.activeState.notes) {
+      content =
+        <NoteIndex notes={this.props.notes}
+          notebook={this.props.activeState.currentNotebook}
+          fetchNoteContent={this.fetchNoteContent}
+          deleteNote={this.deleteNote} />
+    } else if (this.props.activeState.notebooks) {
+      content =
+        <NotebookIndex
+          notebooks={this.props.notebooks}
+          fetchNotebookContents={this.fetchNotebookContents}
+          deleteNotebook={this.deleteNotebook} />
+    } else {
+      content =
+        <TagIndex
+          tags={this.props.tags} />
+    }
+
+    return content;
+  }
+
   render() {
     return (
       <div>
@@ -71,23 +102,14 @@ class Sidebar extends React.Component {
             <button className="sidebar-btn" id="new-note-btn" onClick={this.createNewNote}></button>
             <button className="sidebar-btn" id="note-btn" onClick={this.fetchAllNotes}></button>
             <button className="sidebar-btn" id="notebook-btn" onClick={this.fetchAllNotebooks}></button>
-            <button className="sidebar-btn" id="tag-btn"></button>
+            <button className="sidebar-btn" id="tag-btn" onClick={this.fetchAllTags}></button>
           </div>
           <div id="logout-btn-dummy">
             <button className="sidebar-btn" id="logout-btn" onClick={this.logoutAndRedirect}></button>
           </div>
         </div>
 
-        {this.props.activeState.notes ?
-          <NoteIndex notes={this.props.notes}
-            notebook={this.props.activeState.currentNotebook}
-            fetchNoteContent={this.fetchNoteContent}
-            deleteNote={this.deleteNote} /> :
-          <NotebookIndex
-            notebooks={this.props.notebooks}
-            fetchNotebookContents={this.fetchNotebookContents}
-            deleteNotebook={this.deleteNotebook} />
-        }
+        {this.displaySideMenuContent()}
       </div>
     );
   }

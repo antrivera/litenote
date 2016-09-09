@@ -1,6 +1,7 @@
 export const ActiveStateConstants = {
   ALL_NOTES_ACTIVE: "ALL_NOTES_ACTIVE",
   ALL_NOTEBOOKS_ACTIVE: "ALL_NOTEBOOKS_ACTIVE",
+  ALL_TAGS_ACTIVE: "ALL_TAGS_ACTIVE",
   NOTEBOOK_ACTIVE: "NOTEBOOK_ACTIVE",
   ACTIVE_NOTE: "ACTIVE_NOTE"
 };
@@ -11,6 +12,10 @@ export const displayAllNotes = () => ({
 
 export const displayAllNotebooks = () => ({
   type: ActiveStateConstants.ALL_NOTEBOOKS_ACTIVE
+});
+
+export const displayAllTags = () => ({
+  type: ActiveStateConstants.ALL_TAGS_ACTIVE
 });
 
 export const displayNotebookContent = notebook => ({

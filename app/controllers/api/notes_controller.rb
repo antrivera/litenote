@@ -31,6 +31,9 @@ class Api::NotesController < ApplicationController
     @note = Note.find(params[:id])
 
     if (@note.notebook.author_id == current_user.id) && @note.update(note_params)
+      params[:note][:tags].each do |tag_name|
+        @note.tags.create(name: tag_name)
+      end
       render json: @note
     else
       render json: @note.errors.full_messages, status: 422
@@ -51,6 +54,6 @@ class Api::NotesController < ApplicationController
 
   private
   def note_params
-    params.require(:note).permit(:title, :body, :notebook_id)
+    params.require(:note).permit(:title, :body, :notebook_id, :tags)
   end
 end

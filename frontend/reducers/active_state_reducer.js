@@ -4,6 +4,7 @@ import { merge } from 'lodash';
 const defaultActiveState = {
   notes: true,
   notebooks: false,
+  tags: false,
   currentNotebook: {
     title: "Notes",
     id: null
@@ -17,6 +18,8 @@ const ActiveStateReducer = (state= defaultActiveState, action) => {
       return defaultActiveState;
     case ActiveStateConstants.ALL_NOTEBOOKS_ACTIVE:
       return merge({}, defaultActiveState, {notes: false, notebooks: true});
+    case ActiveStateConstants.ALL_TAGS_ACTIVE:
+      return merge({}, defaultActiveState, {notes: false, tags: true});
     case ActiveStateConstants.NOTEBOOK_ACTIVE:
       const notebookContentActive = {
         notes: true,
