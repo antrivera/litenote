@@ -32,7 +32,12 @@ class Api::NotesController < ApplicationController
 
     if (@note.notebook.author_id == current_user.id) && @note.update(note_params)
       params[:note][:tags].each do |tag_name|
-        @note.tags.create(name: tag_name)
+        tag = Tag.find_by_name(tag_name)
+        if tag
+          @note.taggings.create(note_id: @note.id, tag_id: tag.id)
+        else
+          @note.tags.create(name: tag_name)
+        end
       end
       render json: @note
     else
