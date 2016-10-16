@@ -1,6 +1,6 @@
 # Litenote
 
-[Litenote live][heroku]
+[Litenote][heroku]
 
 [heroku]: https://react-note-app.herokuapp.com
 

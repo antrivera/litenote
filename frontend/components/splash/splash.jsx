@@ -1,11 +1,21 @@
 import React from 'react';
-import { Link, hashHistory } from 'react-router';
+import { hashHistory } from 'react-router';
+import Modal from 'react-modal';
+import SessionFormContainer from '../session/session_form_container';
 
 class Splash extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      open: false
+    };
+
+    this.formType = null;
+
     this.guestDemoLogin = this.guestDemoLogin.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   guestDemoLogin() {
@@ -15,6 +25,10 @@ class Splash extends React.Component {
     }
 
     this.props.login({user})
+  }
+
+  componentWillMount() {
+    Modal.setAppElement('#root');
   }
 
   componentDidUpdate() {
@@ -27,6 +41,17 @@ class Splash extends React.Component {
     }
   }
 
+  openModal(formType) {
+    return () => {
+      this.formType = formType;
+      this.setState({open: true});
+    }
+  }
+
+  closeModal() {
+    this.setState({open: false});
+  }
+
   render() {
     return (
       <header>
@@ -36,18 +61,22 @@ class Splash extends React.Component {
           </div>
 
           <ul className="navbar-list-group">
-            <li><Link to="/login" activeClassName="current">Login</Link></li>
+            <li><div id="login-btn" onClick={ this.openModal('login') }>Login</div></li>
           </ul>
         </nav>
 
         <div id="splash-container">
+          <Modal  className="modal" overlayClassName="modal-overlay"
+            isOpen={ this.state.open } onRequestClose={ this.closeModal }>
+            <SessionFormContainer formType={ this.formType } />
+          </Modal>
           <div id="splash-content">
             <div id="splah-content-text">
               <h1 id="splash-title">Litenote</h1>
               <h2 id="splash-description">Write it down.</h2>
             </div>
             <div id="sign-up-btn-container">
-              <Link to="/signup" activeClassName="current"><button>Sign Up!</button></Link>
+              <button onClick={ this.openModal('signup') }>Sign Up!</button>
               <button onClick={this.guestDemoLogin}>Guest Demo</button>
             </div>
           </div>
