@@ -1,169 +1,47 @@
 import React from 'react';
-import BlockStyleControls from './block_style_controls';
-import InlineStyleControls from './inline_style_controls';
-import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, ContentState } from 'draft-js';
+import  ReactQuill from 'react-quill';
 import { hashHistory } from 'react-router';
+import WorkspaceHeader from './workspace_header';
 
 class Workspace extends React.Component {
   constructor(props) {
     super(props);
-    this.username = this.props.currentUser.username;
 
-    this.state = {
-      name: "",
-      editorState: this.props.editorState.editorState
-    };
-
-    this.focus = () => this.refs.editor.focus();
-    this.onChange = editorState => this.props.setContentState({editorState});
-    this.handleKeyCommand = this.handleKeyCommand.bind(this);
-    this.saveNoteContents = this.saveNoteContents.bind(this);
-    this.createNewTag = this.createNewTag.bind(this);
-    this.onChange = this.onChange.bind(this);
-    this.onTab = e => this._onTab(e);
-    this.toggleBlockType = type => this._toggleBlockType(type);
-    this.toggleInlineStyle = style => this._toggleInlineStyle(style);
+    this.focus = this.focus.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  update(field) {
-    if (field === "name") {
-      return e => {this.setState({name: e.currentTarget.value})};
-    }
-    return e => {this.props.setContentState({title: e.currentTarget.value});};
+  focus() {
+    this.refs.editor.focus();
   }
 
-  handleKeyCommand(command) {
-    const { editorState } = this.props.editorState;
-    const newState = RichUtils.handleKeyCommand(editorState, command);
-    if (newState) {
-      this.onChange(newState);
-      return true;
-    }
-
-    return false;
-  }
-
-  _onBoldClick() {
-    const { editorState } = this.props.editorState;
-    const newState = RichUtils.toggleInlineStyle(editorState, 'BOLD');
-    if (newState) {
-      this.onChange(newState);
-      return true;
-    }
-
-    return false;
-  }
-
-  _toggleBlockType(blockType) {
-    const { editorState } = this.props.editorState;
-    this.onChange(
-      RichUtils.toggleBlockType(editorState, blockType)
-    );
-  }
-
-  _toggleInlineStyle(inlineStyle) {
-    const { editorState } = this.props.editorState;
-    this.onChange(
-      RichUtils.toggleInlineStyle(editorState, inlineStyle)
-    );
-  }
-
-  _onTab(e) {
-    const { editorState } = this.props.editorState;
-    const maxDepth = 4;
-    this.onChange(
-      RichUtils.onTab(e, editorState)
-    );
+  handleChange(content, delta, source, editor) {
+    console.log(content);
+    this.props.setContentState({editorState: content, title: this.props.editorState.title});
   }
 
   createNewTag(saveNoteContents) {
     hashHistory.push("/new-tag");
   }
 
-  saveNoteContents({editorState}) {
-    return () => {
-      const rawContent = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
-      const note = {
-        id: this.props.activeState.activeNote.id,
-        details: {
-          title: this.props.editorState.title,
-          body: rawContent,
-          notebook_id: this.props.activeState.activeNote.notebook_id,
-          tags: [this.state.name]
-        }
-      };
-      this.props.updateNote({note});
-    }
-  }
-
   render() {
-    const { editorState } = this.props.editorState;
-
-    let newTagClassName = 'note-tag-display';
-    let className = 'editor-container';
-    var contentState = editorState.getCurrentContent();
-    if (!contentState.hasText()) {
-      if (contentState.getBlockMap().first().getType() !== 'unstyled') {
-        className += ' editor-container-hide-placeholder';
-      }
-    }
-
     return (
       <div className="workspace-container">
-        <div className="workspace-header">
-
-          <div className="workspace-header-info">
-            <div className="notebook-icon"></div>
-            <p className="workspace-notebook-title">{this.props.activeState.currentNotebook.title}</p>
-            <div className="tag-icon"></div>
-            <div className="note-tag-display">
-              {
-                !this.props.activeState.activeNote ? <button className="new-tag-btn-hide">+</button> :
-                  <div className="new-tag-container">
-                    <input className={"tag-name-input"}
-                      type="text"
-                      placeholder="Tag name..."
-                      value= {this.state.name}
-                      ref="tag-name"
-                      onChange={this.update("name")} />
-                  </div>
-              }
-            </div>
-            <div className="active-note-tags"></div>
-          </div>
-
-          <div className="rich-text-editor">
-            <BlockStyleControls
-              editorState={ editorState }
-              onToggle={ this.toggleBlockType }
-            />
-            <InlineStyleControls
-              editorState={ editorState }
-              onToggle={ this.toggleInlineStyle }
-            />
-          </div>
-        </div>
-
-        <div className="note-title-container">
-          <input className={"note-title-input"}
-            type="text"
-            placeholder="Title your note"
-            value= {this.props.editorState.title}
-            ref="editor-title"
-            onChange={this.update("title")} />
-            <button className="save-btn" onClick={this.saveNoteContents({editorState})}>Save</button>
-        </div>
-
-        <div className={ className } onClick={this.focus}>
-          <Editor
-            editorState={ editorState }
-            handleKeyCommand={this.handleKeyCommand}
-            onChange={ this.onChange }
-            onTab={ this.onTab }
+        <WorkspaceHeader editorState={ this.props.editorState }
+          activeState={ this.props.activeState }
+          notebooks={ this.props.notebooks }
+          createNote={ this.props.createNote }
+          defaultNotebook={ this.props.defaultNotebook }
+          updateNote={ this.props.updateNote }
+          setContentState={ this.props.setContentState } />
+        <div className="editor-container" onClick={ this.focus }>
+          <ReactQuill
+            theme="snow"
             placeholder="Start typing..."
+            value={ this.props.editorState.editorState }
             ref="editor"
-            spellCheck={true}
-            />
+            onChange={ this.handleChange } >
+          </ReactQuill>
         </div>
       </div>
     );

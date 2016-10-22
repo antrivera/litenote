@@ -7,6 +7,26 @@ class TagIndex extends React.Component {
     this.displayTaggedNotes = this.displayTaggedNotes.bind(this);
   }
 
+  componentWillMount() {
+    this.props.fetchAllTags();
+  }
+
+  componentDidMount() {
+    document.addEventListener('click', this.closeTagDrawer(), false);
+  }
+
+  closeTagDrawer() {
+    return e => {
+      let tagDrawer = document.getElementsByClassName('tag-index-container')[0];
+      if (this.props.className.includes("open")) {
+        let tagBtn = document.getElementById('tag-btn');
+        if (e.target !== tagBtn && !tagDrawer.contains(e.target)) {
+          this.props.closeDrawer();
+        }
+      }
+    }
+  }
+
   displayTaggedNotes(tag) {
     this.props.fetchTaggedNotes(tag);
   }
@@ -28,9 +48,9 @@ class TagIndex extends React.Component {
 
   render() {
     return(
-      <div className="tag-index-container">
+      <div className={ this.props.className }>
         <div className="header-container">
-          <h2>Tags</h2>
+          <h2>TAGS</h2>
         </div>
         <ul className="sidemenu-index">
           {this.tagNames()}

@@ -4,7 +4,8 @@ export const ActiveStateConstants = {
   ALL_TAGS_ACTIVE: "ALL_TAGS_ACTIVE",
   NOTEBOOK_ACTIVE: "NOTEBOOK_ACTIVE",
   TAG_ACTIVE: "TAG_ACTIVE",
-  ACTIVE_NOTE: "ACTIVE_NOTE"
+  ACTIVE_NOTE: "ACTIVE_NOTE",
+  CLOSE_DRAWER: "CLOSE_DRAWER"
 };
 
 export const displayAllNotes = () => ({
@@ -32,4 +33,8 @@ export const displayTaggedNotes = tag => ({
 export const displayNoteContent = note => ({
   type: ActiveStateConstants.ACTIVE_NOTE,
   note
+});
+
+export const closeDrawer = () => ({
+  type: ActiveStateConstants.CLOSE_DRAWER
 });

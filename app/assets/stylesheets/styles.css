@@ -11,6 +11,7 @@ body {
   vertical-align: inherit;
   box-sizing: inherit;
   background: transparent;
+  font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -71,8 +72,8 @@ button {
   border: 0;
   border-bottom: 2px solid #1abc9c;
   cursor: pointer;
-  -webkit-box-shadow: inset 0 -2px #1abc9c;
-  box-shadow: inset 0 -2px #1abc9c;
+  /*-webkit-box-shadow: inset 0 -2px #1abc9c;
+  box-shadow: inset 0 -2px #1abc9c;*/
   margin-right: 20px;
 }
 
@@ -103,7 +104,8 @@ button:hover {
   position: fixed;
   top: 0;
   height: 100%;
-  width: 73px;
+  width: 74px;
+  border-right: 1px solid gainsboro;
   /*display: flex;
   flex-direction: column;*/
   background: #1abc9c;
@@ -114,6 +116,9 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
+  height: 350px;
+  padding-bottom: 150px;
 }
 
 .sidebar-btn {
@@ -126,9 +131,7 @@ button:hover {
 }
 
 .sidebar-btn:hover {
-  /*background: #5890ff;*/
-  width: 55px;
-  height: 55px;
+  background: #fdf0af;
 }
 
 .side-menu-container {
@@ -227,6 +230,8 @@ button:hover {
 
 .notebook-title {
   margin: 12px 80px 0 24px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .notebook-list-item {
@@ -244,11 +249,15 @@ button:hover {
 .header-container {
   height: 122px;
   display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-left: 10px;
+  padding-right: 20px;
+  padding-top: 10px;
   border-bottom: 1px solid gainsboro;
-  flex-direction: column;
-  align-items: center;
-  background: #5a5f63;
-  color: white;
+  background: white;
+  color: #1abc9c;
+  font-size: 14px;
 }
 
 /* allow scrollbar to work */
@@ -270,6 +279,7 @@ button:hover {
 .workspace-header-info {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .workspace-notebook-title {
@@ -321,9 +331,8 @@ button:hover {
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: 100%;
   mask-image: url(notebook.svg);
-  height: 25px;
-  width: 25px;
-  margin-top: 5px;
+  height: 23px;
+  width: 23px;
   background: #1abc9c;
 }
 
@@ -339,11 +348,12 @@ button:hover {
 }
 
 .note-item-btns {
-  height: 75%;
+  height: 60%;
   display: flex;
   flex-direction: row-reverse;
   align-items: flex-end;
   padding-bottom: 6px;
+  padding-right: 6px;
 }
 
 .notebook-item-btns {
@@ -380,7 +390,7 @@ button:hover {
 #logout-btn {
   -webkit-mask-image: url(logout.svg);
   -webkit-mask-repeat: no-repeat;
-  -webkit-mask-size: 82%;
+  -webkit-mask-size: 90%;
   /* position: fixed; */
   /* top: 600px; */ /* TODO: make responsive */
   mask-image: url(logout.svg);
@@ -388,6 +398,7 @@ button:hover {
 
 #logout-btn-dummy {
   align-self: center;
+  margin-bottom: 10px;
 }
 
 .logo-dummy {
@@ -481,7 +492,7 @@ button:hover {
 
 .editor-container {
   position: fixed;
-  height: 70%;
+  height: 85%;
   width: 65%;
   min-width: 300px;
   overflow-y: scroll;
@@ -519,6 +530,7 @@ button:hover {
   color: #1abc9c;
   border: none;
   padding: 15px;
+  font-family: monospace;
 }
 
 .tag-name-input {
@@ -586,6 +598,7 @@ input:focus {
   border-top: 1px solid gainsboro;
   border-bottom: 1px solid gainsboro;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .note-list-item:hover {
@@ -668,4 +681,105 @@ input:focus {
 
 .save-btn {
   margin-left: 15px;
+}
+
+/* new ******************************************************/
+
+.open {
+  width: 500px;
+  opacity: 1;
+  z-index: 1;
+  visibility: visible;
+  transition: all 400ms ease;
+}
+
+.closed {
+  width: 0px;
+  opacity: 0;
+  z-index: -1;
+  visibility: visible;
+  transition: all 400ms ease;
+}
+
+.note-index-item-body {
+  padding-left: 12px;
+  padding-top: 6px;
+  color: #808080;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.notebook-select {
+  position: relative;
+  cursor: pointer;
+}
+
+.notebook-dropdown {
+  position: absolute;
+  background: white;
+  left: 3px;
+  top: 36px;
+  border: 1px solid gainsboro;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04), -6px 8px 15px rgba(0, 0, 0, 0.04), 6px 8px 15px rgba(0, 0, 0, 0.04);
+  width: 330px;
+}
+
+.notebook-dropdown-item {
+  height: 52px;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-left: 10px;
+  padding-top: 15px;
+  border-bottom: 1px solid gainsboro;
+  padding-bottom: 13px;
+}
+
+.notebook-dropdown-item:hover {
+  background: #1abc9c;
+  color: white;
+}
+
+.create-new-notebook {
+  color: #1abc9c;
+}
+
+.current-notebook {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-icon {
+  -webkit-mask-image: url(dropdown.svg);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100%;
+  mask-image: url(dropdown.svg);
+  height: 15px;
+  width: 15px;
+  background: #808080;
+}
+
+.new-icon {
+  -webkit-mask-image: url(new-icon.svg);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100%;
+  mask-image: url(new-icon.svg);
+  cursor: pointer;
+  height: 19px;
+  width: 19px;
+  background: #808080;
+}
+
+.new-icon:hover {
+  background: #1abc9c;
+}
+
+#current-notebook-title {
+  color: #808080;
+  padding-left: 4px;
+  padding-right: 5px;
+}
+
+#current-notebook-title:hover {
+  color: black;
 }

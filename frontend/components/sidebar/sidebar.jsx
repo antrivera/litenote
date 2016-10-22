@@ -1,5 +1,6 @@
 import React from 'react';
 import NotebookIndex from '../notebook/notebook_index';
+import NotebookContainer from '../notebook/notebook_container';
 import NoteIndex from '../note/note_index';
 import TagIndex from '../tag/tag_index';
 import { Link, hashHistory } from 'react-router';
@@ -9,121 +10,80 @@ class Sidebar extends React.Component {
     super(props);
 
     this.logoutAndRedirect = this.logoutAndRedirect.bind(this);
-    this.fetchAllNotebooks = this.fetchAllNotebooks.bind(this);
-    this.fetchAllNotes = this.fetchAllNotes.bind(this);
-    this.fetchAllTags = this.fetchAllTags.bind(this);
-    this.fetchNotebookContents = this.fetchNotebookContents.bind(this);
+    this.openNotebookDrawer = this.openNotebookDrawer.bind(this);
+    this.openTagDrawer = this.openTagDrawer.bind(this);
+    this.closeDrawer = this.closeDrawer.bind(this);
+    this.displayNotes = this.displayNotes.bind(this);
     this.fetchNoteContent = this.fetchNoteContent.bind(this);
-    this.fetchTaggedNotes = this.fetchTaggedNotes.bind(this);
-    this.createNewNote = this.createNewNote.bind(this);
-    this.deleteNote = this.deleteNote.bind(this);
-    this.deleteNotebook = this.deleteNotebook.bind(this);
-    this.filterSearchResults = this.filterSearchResults.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchAllNotes();
-  }
-
-  createNewNote() {
-    hashHistory.push('/new-note');
-  }
-
-  deleteNote(note) {
-    this.props.deleteNote(note);
-  }
-
-  deleteNotebook(notebook) {
-    this.props.deleteNotebook(notebook);
-  }
-
-  fetchAllNotebooks() {
-    this.props.fetchAllNotebooks();
+  openNotebookDrawer() {
     this.props.displayAllNotebooks();
   }
 
-  fetchAllNotes() {
+  closeDrawer() {
+    this.props.closeDrawer();
+  }
+
+  openTagDrawer() {
+    this.props.displayAllTags();
+  }
+
+  displayNotes() {
     this.props.fetchAllNotes();
     this.props.displayAllNotes();
   }
 
-  fetchAllTags() {
-    this.props.fetchAllTags();
-    this.props.displayAllTags();
+  logoutAndRedirect(logout) {
+    this.props.logout();
+    this.props.emptyContentState();
+    hashHistory.push('/');
   }
 
   fetchNoteContent(note) {
     this.props.fetchNote(note);
     this.props.displayNoteContent(note);
-    this.props.loadEditorContent(note);
-  }
-
-  fetchNotebookContents(notebook) {
-    this.props.fetchNotebook(notebook);
-    this.props.displayNotebookContent(notebook);
-  }
-
-  fetchTaggedNotes(tag) {
-    this.props.fetchTaggedNotes(tag);
-    this.props.displayTaggedNotes(tag);
-  }
-
-  logoutAndRedirect(logout) {
-    this.props.logout();
-    hashHistory.push('/');
-  }
-
-  filterSearchResults(term) {
-    this.props.filterNotes(term, this.props.notes);
-  }
-
-  displaySideMenuContent() {
-    let content;
-
-    if (this.props.activeState.notes) {
-      content =
-        <NoteIndex notes={this.props.notes}
-          notebook={this.props.activeState.currentNotebook}
-          fetchNoteContent={this.fetchNoteContent}
-          filterSearchResults={this.filterSearchResults}
-          deleteNote={this.deleteNote} />
-    } else if (this.props.activeState.notebooks) {
-      content =
-        <NotebookIndex
-          notebooks={this.props.notebooks}
-          fetchNotebookContents={this.fetchNotebookContents}
-          deleteNotebook={this.deleteNotebook} />
-    } else {
-      content =
-        <TagIndex
-          tags={this.props.tags}
-          fetchTaggedNotes={this.fetchTaggedNotes} />
-    }
-
-    return content;
   }
 
   render() {
     return (
-      <div>
+      <div className="sidebar-container">
         <div className="sidebar">
           <div className="logo-dummy">
             <div className="reactnote-logo"></div>
           </div>
 
           <div className="sidebar-btn-group">
-            <button className="sidebar-btn" id={this.props.activeState.currentNotebook.id ? "new-note-btn" :
-              "new-note-btn-hidden" } onClick={this.createNewNote}></button>
-            <button className="sidebar-btn" id="note-btn" onClick={this.fetchAllNotes}></button>
-            <button className="sidebar-btn" id="notebook-btn" onClick={this.fetchAllNotebooks}></button>
-            <button className="sidebar-btn" id="tag-btn" onClick={this.fetchAllTags}></button>
+            <button className="sidebar-btn" id="note-btn" onClick={this.displayNotes}></button>
+            <button className="sidebar-btn" id="notebook-btn" onClick={this.openNotebookDrawer}></button>
+            <button className="sidebar-btn" id="tag-btn" onClick={this.openTagDrawer}></button>
           </div>
+
           <div id="logout-btn-dummy">
             <button className="sidebar-btn" id="logout-btn" onClick={this.logoutAndRedirect}></button>
           </div>
         </div>
 
-        {this.displaySideMenuContent()}
+        <NoteIndex notes={this.props.notes}
+          notebook={this.props.activeState.currentNotebook}
+          fetchNoteContent={this.fetchNoteContent}
+          fetchAllNotes={ this.props.fetchAllNotes }
+          filterSearchResults={ this.filterSearchResults }
+          emptyContentState={ this.props.emptyContentState }
+          displayNoteContent={this.props.displayNoteContent}
+          deleteNote={this.props.deleteNote} />
+
+        <NotebookContainer
+          className={`notebook-index-container ${this.props.activeState.notebooks}`}
+          notebooks={this.props.notebooks}
+          closeDrawer={ this.closeDrawer } />
+
+        <TagIndex
+          className={`tag-index-container ${this.props.activeState.tags}`}
+          tags={this.props.tags}
+          closeDrawer={ this.closeDrawer }
+          fetchAllTags={ this.props.fetchAllTags }
+          fetchTaggedNotes={this.fetchTaggedNotes} />
       </div>
     );
   }

@@ -2,9 +2,9 @@ import { ActiveStateConstants } from '../actions/active_state_actions';
 import { merge } from 'lodash';
 
 const defaultActiveState = {
-  notes: true,
-  notebooks: false,
-  tags: false,
+  notes: "open",
+  notebooks: "closed",
+  tags: "closed",
   currentNotebook: {
     title: "Notes",
     id: null
@@ -17,13 +17,13 @@ const ActiveStateReducer = (state= defaultActiveState, action) => {
     case ActiveStateConstants.ALL_NOTES_ACTIVE:
       return defaultActiveState;
     case ActiveStateConstants.ALL_NOTEBOOKS_ACTIVE:
-      return merge({}, defaultActiveState, {notes: false, notebooks: true});
+      return merge({}, state, {notes: "closed", notebooks: "open", tags: "closed"});
     case ActiveStateConstants.ALL_TAGS_ACTIVE:
-      return merge({}, defaultActiveState, {notes: false, tags: true});
+      return merge({}, state, {notes: "closed", notebooks: "closed", tags: "open"});
     case ActiveStateConstants.NOTEBOOK_ACTIVE:
       const notebookContentActive = {
-        notes: true,
-        notebooks: false,
+        notes: "open",
+        notebooks: "closed",
         currentNotebook: {
           title: `${action.notebook.title}`,
           id: action.notebook.id
@@ -31,9 +31,12 @@ const ActiveStateReducer = (state= defaultActiveState, action) => {
       };
       return merge({}, defaultActiveState, notebookContentActive);
     case ActiveStateConstants.TAG_ACTIVE:
+      //// TODO: something here?
       return defaultActiveState;
     case ActiveStateConstants.ACTIVE_NOTE:
       return merge({}, state, {activeNote: action.note});
+    case ActiveStateConstants.CLOSE_DRAWER:
+      return merge({}, state, {notes: "open", notebooks: "closed", tags: "closed"});
     default:
       return state;
   }

@@ -26,6 +26,7 @@ const mapDispatchToProps = dispatch => ({
   fetchTaggedNotes: tag => dispatch(fetchTaggedNotes(tag)),
   deleteNote: note => dispatch(deleteNote(note)),
   displayAllNotes: () => dispatch(ActiveStateActions.displayAllNotes()),
+  closeDrawer: () => dispatch(ActiveStateActions.closeDrawer()),
   displayAllNotebooks: () => dispatch(ActiveStateActions.displayAllNotebooks()),
   displayAllTags: () => dispatch(ActiveStateActions.displayAllTags()),
   displayTaggedNotes: tag => dispatch(ActiveStateActions.displayTaggedNotes(tag)),

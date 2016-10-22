@@ -5,6 +5,7 @@ import TagReducer from './tag_reducer';
 import NoteReducer from './note_reducer';
 import ActiveStateReducer from './active_state_reducer';
 import EditorStateReducer from './editor_reducer';
+import DefaultNotebookReducer from './default_notebook_reducer';
 
 const RootReducer = combineReducers({
   session: SessionReducer,
@@ -12,7 +13,8 @@ const RootReducer = combineReducers({
   notes: NoteReducer,
   tags: TagReducer,
   activeState: ActiveStateReducer,
-  editorState: EditorStateReducer
+  editorState: EditorStateReducer,
+  defaultNotebook: DefaultNotebookReducer
 });
 
 export default RootReducer;

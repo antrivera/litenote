@@ -7,7 +7,9 @@ import Home from './home';
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
   activeState: state.activeState,
-  editorState: state.editorState
+  editorState: state.editorState,
+  defaultNotebook: state.defaultNotebook,
+  notebooks: state.notebooks
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -8,10 +8,38 @@ class NotebookIndex extends React.Component {
     this.createNotebook = this.createNotebook.bind(this);
     this.displayNotebook = this.displayNotebook.bind(this);
     this.deleteNotebook = this.deleteNotebook.bind(this);
+    this.closeNotebookDrawer = this.closeNotebookDrawer.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.fetchAllNotebooks();
+  }
+
+  componentDidMount() {
+    document.addEventListener('click', this.closeNotebookDrawer, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.closeNotebookDrawer, false);
+  }
+
+  closeNotebookDrawer(e) {
+    let notebookDrawer = document.getElementsByClassName('notebook-index-container')[0];
+    if (this.props.className.includes("open")) {
+      let notebookBtn = document.getElementById('notebook-btn');
+      if (e.target !== notebookBtn && !notebookDrawer.contains(e.target)) {
+        this.props.closeDrawer();
+      }
+    }
+  }
+
+  fetchNotebookContents(notebook) {
+    this.props.fetchNotebook(notebook);
+    this.props.displayNotebookContent(notebook);
   }
 
   displayNotebook(notebook) {
-    this.props.fetchNotebookContents(notebook);
+    this.fetchNotebookContents(notebook);
   }
 
   deleteNotebook(notebook, event) {
@@ -26,9 +54,12 @@ class NotebookIndex extends React.Component {
           <div className="notebook-title">
             {notebook.title}
           </div>
-          <div className="notebook-item-btns">
-            <button className="delete-btn sidebar-btn" onClick={ this.deleteNotebook.bind(null, notebook)}></button>
-          </div>
+          { notebook.removable === true ? (
+            <div className="notebook-item-btns">
+              <button className="delete-btn sidebar-btn" onClick={ this.deleteNotebook.bind(null, notebook)}></button>
+            </div>
+          ) : null
+        }
         </div>
       </li>
     ));
@@ -40,10 +71,10 @@ class NotebookIndex extends React.Component {
 
   render() {
     return (
-      <div className="notebook-index-container">
+      <div className={ this.props.className }>
         <div className="header-container">
-          <h2>Notebooks</h2>
-          <button onClick={this.createNotebook}>New Notebook</button>
+          <h2>NOTEBOOKS</h2>
+          <div className="new-icon" onClick={this.createNotebook}></div>
         </div>
         <ul className="sidemenu-index">
           {this.notebookTitles()}
