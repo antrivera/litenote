@@ -22,14 +22,23 @@ class NotebookDropdown extends React.Component{
     ));
   }
 
+  currentNotebookTitle() {
+    if (this.props.activeNote) {
+      return this.props.activeNote.notebook_title;
+    } else if (this.props.currentNotebook.id) {
+      return this.props.currentNotebook.title;
+    } else {
+      return this.props.defaultNotebook.title;
+    }
+  }
+
   render() {
     return (
       <div className="notebook-select">
         <div className="current-notebook" title="Move note" onClick={this.toggleDropDownDisplay}>
           <div className="notebook-icon"></div>
           <span id="current-notebook-title">
-            {this.props.activeNote ? this.props.activeNote.notebook_title :
-              this.props.currentNotebook.title}
+            { this.currentNotebookTitle() }
           </span>
           <div className="dropdown-icon"></div>
         </div>

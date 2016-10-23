@@ -45,6 +45,7 @@ class WorkspaceHeader extends React.Component {
           <NotebookDropdown
             activeNote={ this.props.activeState.activeNote }
             currentNotebook={ this.props.activeState.currentNotebook }
+            defaultNotebook={ this.props.defaultNotebook }
             notebooks={ this.props.notebooks } />
           <div className="tag-icon"></div>
           <div className="active-note-tags"></div>
