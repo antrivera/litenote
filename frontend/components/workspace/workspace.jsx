@@ -11,6 +11,10 @@ class Workspace extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentWillUnmount() {
+    this.refs.editor.blur();
+  }
+
   focus() {
     this.refs.editor.focus();
   }
