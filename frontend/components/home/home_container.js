@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
-import { createNote, updateNote } from '../../actions/note_actions';
+import { createNote, updateNote, moveNote } from '../../actions/note_actions';
 import { setContentState } from '../../actions/editor_actions';
 import Home from './home';
 
@@ -16,6 +16,7 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
   createNote: note => dispatch(createNote(note)),
   updateNote: note => dispatch(updateNote(note)),
+  moveNote: (note, notebook) => dispatch(moveNote(note, notebook)),
   setContentState: content => dispatch(setContentState(content))
 });
 

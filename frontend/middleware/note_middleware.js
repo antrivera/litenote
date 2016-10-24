@@ -1,7 +1,7 @@
-import { NoteConstants, receiveAllNotes, receiveNote, receiveErrors, receiveUpdatedNote } from '../actions/note_actions';
+import { NoteConstants, fetchAllNotes, receiveAllNotes, receiveNote, receiveErrors, receiveUpdatedNote } from '../actions/note_actions';
 import { fetchNotebook } from '../actions/notebook_actions';
 import { setContentState, emptyContentState } from '../actions/editor_actions';
-import { displayNoteContent } from '../actions/active_state_actions';
+import { displayNoteContent, displayNotebookContent } from '../actions/active_state_actions';
 import * as NoteAPI from '../util/note_api_util';
 
 const NoteMiddleware = ({getState, dispatch}) => next => action => {
@@ -38,6 +38,23 @@ const NoteMiddleware = ({getState, dispatch}) => next => action => {
       break;
     case NoteConstants.UPDATE_NOTE:
       NoteAPI.updateNote(action.note, updateNoteSuccess, error);
+      break;
+    case NoteConstants.MOVE_NOTE:
+      //TODO: refactor
+      let notebookID = getState().activeState.currentNotebook.id;
+      let cb;
+      if (notebookID) {
+        cb = () => dispatch(fetchNotebook({id: notebookID }));
+      } else {
+        cb = () => dispatch(fetchAllNotes());
+      }
+
+      if (getState().activeState.activeNote) {
+        NoteAPI.updateNote(action.note, cb, error);
+      } else {
+        debugger
+        dispatch(displayNotebookContent(action.notebook));
+      }
       break;
     case NoteConstants.DESTROY_NOTE:
       let currentNotebookId = getState().activeState.currentNotebook.id;

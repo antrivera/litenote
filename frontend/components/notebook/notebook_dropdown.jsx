@@ -1,4 +1,5 @@
 import React from 'react';
+import NotebookDropdownItem from './notebook_dropdown_item';
 
 class NotebookDropdown extends React.Component{
   constructor(props) {
@@ -12,13 +13,21 @@ class NotebookDropdown extends React.Component{
   }
 
   toggleDropDownDisplay() {
+    if (!this.props.activeNote) {
+      return;
+    }
+    
     let display = this.state.dropDownDisplay === "closed" ? "open" : "closed";
     this.setState({dropDownDisplay: display});
   }
 
   notebookTitles() {
     return this.props.notebooks.map( notebook => (
-      <li className="notebook-dropdown-item" key={notebook.title + notebook.id}>{notebook.title}</li>
+      <NotebookDropdownItem key={notebook.title + notebook.id}
+        updateNote={ this.props.updateNote }
+        activeNote={ this.props.activeNote }
+        moveNote={ this.props.moveNote }
+        notebook={ notebook } />
     ));
   }
 

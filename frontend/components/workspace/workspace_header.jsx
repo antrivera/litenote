@@ -46,6 +46,8 @@ class WorkspaceHeader extends React.Component {
             activeNote={ this.props.activeState.activeNote }
             currentNotebook={ this.props.activeState.currentNotebook }
             defaultNotebook={ this.props.defaultNotebook }
+            updateNote={ this.props.updateNote }
+            moveNote={ this.props.moveNote }
             notebooks={ this.props.notebooks } />
           <div className="tag-icon"></div>
           <div className="active-note-tags"></div>

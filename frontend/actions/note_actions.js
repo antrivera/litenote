@@ -3,6 +3,7 @@ export const NoteConstants = {
   REQUEST_NOTE: "REQUEST_NOTE",
   CREATE_NOTE: "CREATE_NOTE",
   UPDATE_NOTE: "UPDATE_NOTE",
+  MOVE_NOTE: "MOVE_NOTE",
   FILTER_NOTES: "FILTER_NOTES",
   RECEIVE_UPDATE: "RECEIVE_UPDATE",
   RECEIVE_NOTES: "RECEIVE_NOTES",
@@ -30,6 +31,14 @@ export const updateNote = note => ({
   type: NoteConstants.UPDATE_NOTE,
   note
 });
+
+export const moveNote = (note, notebook) => {
+  debugger
+return{
+  type: NoteConstants.MOVE_NOTE,
+  note,
+  notebook
+}};
 
 export const receiveUpdatedNote = note => ({
   type: NoteConstants.RECEIVE_UPDATE,

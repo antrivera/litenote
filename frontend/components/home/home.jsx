@@ -8,6 +8,7 @@ const Home = ({
   logout,
   createNote,
   updateNote,
+  moveNote,
   activeState,
   editorState,
   defaultNotebook,
@@ -19,6 +20,7 @@ const Home = ({
     <Workspace currentUser={currentUser}
       createNote={createNote}
       updateNote={updateNote}
+      moveNote={moveNote}
       setContentState={setContentState}
       activeState={activeState}
       notebooks={notebooks}

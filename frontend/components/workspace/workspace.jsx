@@ -37,6 +37,7 @@ class Workspace extends React.Component {
           createNote={ this.props.createNote }
           defaultNotebook={ this.props.defaultNotebook }
           updateNote={ this.props.updateNote }
+          moveNote={ this.props.moveNote }
           setContentState={ this.props.setContentState } />
         <div className="editor-container" onClick={ this.focus }>
           <ReactQuill
