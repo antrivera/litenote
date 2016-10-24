@@ -39,6 +39,7 @@ class Note < ActiveRecord::Base
     h = super(options)
     h[:plain_text_body] = plain_text_body
     h[:notebook_title] = notebook_title
+    h[:tags] = tags
     h
   end
 end

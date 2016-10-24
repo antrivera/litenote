@@ -1,5 +1,5 @@
 import { ActiveStateConstants } from '../actions/active_state_actions';
-import { merge } from 'lodash';
+import { merge, mergeWith, isArray } from 'lodash';
 
 const defaultActiveState = {
   notes: "open",
@@ -34,7 +34,12 @@ const ActiveStateReducer = (state= defaultActiveState, action) => {
       //// TODO: something here?
       return defaultActiveState;
     case ActiveStateConstants.ACTIVE_NOTE:
-      return merge({}, state, {activeNote: action.note});
+      const customizer = (objVal, srcVal) => {
+        if (isArray(objVal)) {
+          return srcVal;
+        }
+      }
+      return mergeWith({}, state, {activeNote: action.note}, customizer);
     case ActiveStateConstants.CLOSE_DRAWER:
       return merge({}, state, {notes: "open", notebooks: "closed", tags: "closed"});
     default:

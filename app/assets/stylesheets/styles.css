@@ -279,7 +279,7 @@ button:hover {
 .workspace-header-info {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  margin-top: 10px;
 }
 
 .workspace-notebook-title {
@@ -343,7 +343,7 @@ button:hover {
   mask-image: url(tag.svg);
   height: 25px;
   width: 25px;
-  margin-top: 5px;
+  margin-right: 5px;
   background: #1abc9c;
 }
 
@@ -404,6 +404,7 @@ button:hover {
 .logo-dummy {
   height: 82px;
   overflow-y: hidden;
+  margin-top: 10px;
 }
 
 .splash-logo-dummy {
@@ -680,7 +681,19 @@ input:focus {
 }
 
 .save-btn {
-  margin-left: 15px;
+  margin-left: auto;
+  width: 85px;
+  height: 35px;
+  color: #1abc9c;
+  border: 2px solid #1abc9c;
+  background: white;
+  text-shadow: none;
+  box-shadow: none;
+}
+
+.save-btn:hover {
+  background: #1abc9c;
+  color: white;
 }
 
 /* new ******************************************************/
@@ -725,6 +738,16 @@ input:focus {
   width: 330px;
 }
 
+.tag-dropdown {
+  position: absolute;
+  background: white;
+  left: 3px;
+  top: 36px;
+  border: 1px solid gainsboro;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04), -6px 8px 15px rgba(0, 0, 0, 0.04), 6px 8px 15px rgba(0, 0, 0, 0.04);
+  width: 330px;
+}
+
 .notebook-dropdown-item {
   height: 52px;
   padding-right: 15px;
@@ -747,6 +770,7 @@ input:focus {
 .current-notebook {
   display: flex;
   align-items: center;
+  padding-right: 10px;
 }
 
 .dropdown-icon {
@@ -782,4 +806,33 @@ input:focus {
 
 #current-notebook-title:hover {
   color: black;
+}
+
+.tag-select {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.tag-index-item {
+  border: 1px solid #1abc9c;
+  border-radius: 5px;
+  display: inline;
+  float: left;
+  margin: 10px;
+  padding: 3px 5px;
+  font-size: 14px;
+}
+
+#tag-input {
+  width: 95%;
+  padding: 5px;
+  margin: 5px;
+  font-size: 14px;
+}
+
+#tag-input::-webkit-input-placeholder {
+  color: #808080;
+  opacity: 0.7;
 }

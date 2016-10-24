@@ -1,5 +1,6 @@
 import React from 'react';
 import NotebookDropdown from '../notebook/notebook_dropdown';
+import TagDropdown from '../tag/tag_dropdown';
 
 class WorkspaceHeader extends React.Component {
   constructor(props) {
@@ -49,8 +50,7 @@ class WorkspaceHeader extends React.Component {
             updateNote={ this.props.updateNote }
             moveNote={ this.props.moveNote }
             notebooks={ this.props.notebooks } />
-          <div className="tag-icon"></div>
-          <div className="active-note-tags"></div>
+          <TagDropdown activeNote={ this.props.activeState.activeNote } />
           <button className="save-btn" onClick={ this.saveNoteContent }>Save</button>
         </div>
 
