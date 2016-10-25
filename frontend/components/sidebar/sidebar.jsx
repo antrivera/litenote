@@ -71,11 +71,11 @@ class Sidebar extends React.Component {
           </div>
         </div>
 
-        <NoteIndex notes={this.props.notes}
+        <NoteIndex notes={this.props.filteredNotes}
           notebook={this.props.activeState.currentNotebook}
           fetchNoteContent={this.fetchNoteContent}
           fetchAllNotes={ this.props.fetchAllNotes }
-          filterSearchResults={ this.filterSearchResults }
+          filterNotes={ this.props.filterNotes }
           emptyContentState={ this.props.emptyContentState }
           displayNoteContent={this.props.displayNoteContent}
           deleteNote={this.props.deleteNote} />

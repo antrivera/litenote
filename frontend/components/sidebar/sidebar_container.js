@@ -4,12 +4,14 @@ import { fetchAllNotebooks, fetchNotebook, deleteNotebook } from '../../actions/
 import { fetchAllNotes, fetchNote, deleteNote, filterNotes } from '../../actions/note_actions';
 import { fetchAllTags, fetchTaggedNotes } from '../../actions/tag_actions';
 import { setContentState, loadEditorContent, emptyContentState } from '../../actions/editor_actions';
+import { filteredNotes } from '../../reducers/selectors';
 import * as ActiveStateActions from '../../actions/active_state_actions';
 import Sidebar from './sidebar';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
   notes: state.notes,
+  filteredNotes: filteredNotes(state),
   notebooks: state.notebooks,
   tags: state.tags,
   activeState: state.activeState
@@ -35,7 +37,7 @@ const mapDispatchToProps = dispatch => ({
   setContentState: content => dispatch(setContentState(content)),
   loadEditorContent: content => dispatch(loadEditorContent(content)),
   emptyContentState: () => dispatch(emptyContentState()),
-  filterNotes: (term, notes) => dispatch(filterNotes(term, notes))
+  filterNotes: term => dispatch(filterNotes(term))
 });
 
 export default connect(

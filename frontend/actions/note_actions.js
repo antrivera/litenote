@@ -67,8 +67,7 @@ export const clearNotesState = () => ({
   type: NoteConstants.CLEAR_NOTES_STATE
 });
 
-export const filterNotes = (term, notes) => ({
+export const filterNotes = term => ({
   type: NoteConstants.FILTER_NOTES,
-  term,
-  notes
+  term
 });

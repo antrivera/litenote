@@ -49,8 +49,8 @@ class TagDropdown extends React.Component {
     if (!this.props.activeNote) {
       return null;
     }
-    return this.props.activeNote.tags.map( tag => (
-      <li className="tag-index-item" key={tag.id + tag.name}>{tag.name}</li>
+    return this.props.activeNote.tags.map( (tag, idx) => (
+      <li className="tag-index-item" key={idx + tag.id + tag.name}>{tag.name}</li>
     ));
   }
 

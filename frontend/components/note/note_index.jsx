@@ -7,6 +7,7 @@ class NoteIndex extends React.Component {
 
     this.createNewNote = this.createNewNote.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
+    this.searchNotes = this.searchNotes.bind(this);
   }
 
   componentWillMount() {
@@ -34,12 +35,26 @@ class NoteIndex extends React.Component {
     this.props.deleteNote(note);
   }
 
+  searchNotes(e) {
+      this.props.filterNotes(e.currentTarget.value);
+  }
+
   render() {
     return (
       <div className="side-menu-container">
-        <div className="header-container">
-          <h2>{`${this.props.notebook.title.toUpperCase()}`}</h2>
-          <div className="new-icon" onClick={ this.createNewNote }></div>
+        <div className="header">
+          <div className="header-container">
+            <h2>{`${this.props.notebook.title.toUpperCase()}`}</h2>
+            <div className="new-icon" onClick={ this.createNewNote }></div>
+          </div>
+          <div className="search-input-container">
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Find a note"
+              onChange={ this.searchNotes }>
+            </input>
+          </div>
         </div>
         <ul>
           { this.notesList() }

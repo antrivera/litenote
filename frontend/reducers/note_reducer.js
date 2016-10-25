@@ -1,22 +1,27 @@
 import { NoteConstants } from '../actions/note_actions';
 import { merge, union } from 'lodash';
 
-const NoteReducer = (state= [], action) => {
+const initialState = {
+  searchTerm: '',
+  notes: []
+}
+
+const NoteReducer = (state = initialState, action) => {
   switch (action.type) {
     case NoteConstants.RECEIVE_NOTES:
-      return action.notes;
+      let newState = merge({}, {searchTerm: state.searchTerm}, {notes: action.notes});
+      return newState;
     case NoteConstants.RECEIVE_NOTE:
-      return [...state, action.note];
+      debugger
+      return merge({}, state, {notes: [action.note, ...state.notes]});
     case NoteConstants.CLEAR_NOTES_STATE:
-      return [];
+      return initialState;
     case NoteConstants.RECEIVE_UPDATE:
-      const oldState = state.filter(note => note.id !== action.note.id);
-      return [action.note, ...oldState];
+      debugger
+      const oldState = state.notes.filter(note => note.id !== action.note.id);
+      return merge({}, state, {notes: [action.note, ...oldState]});
     case NoteConstants.FILTER_NOTES:
-      const filteredNotes = action.notes.filter(
-        note => note.title.toLowerCase().includes(action.term.toLowerCase())
-      )
-      return filteredNotes;
+      return merge({}, state, {searchTerm: action.term});
     case NoteConstants.RECEIVE_ERRORS:
       // TODO: error state structure
     default:
