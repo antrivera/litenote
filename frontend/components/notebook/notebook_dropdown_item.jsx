@@ -13,8 +13,7 @@ const updateNoteParentNotebook = (note, moveNote, notebook) => (
       details: {
         title: note.title,
         body: note.body,
-        notebook_id: notebook.id,
-        tags: [""]
+        notebook_id: notebook.id
       }
     };
     moveNote({note}, notebook);

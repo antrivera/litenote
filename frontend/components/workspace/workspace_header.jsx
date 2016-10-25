@@ -21,8 +21,7 @@ class WorkspaceHeader extends React.Component {
         details: {
           title: this.props.editorState.title,
           body: this.props.editorState.editorState,
-          notebook_id: this.props.activeState.activeNote.notebook_id,
-          tags: [""]
+          notebook_id: this.props.activeState.activeNote.notebook_id
         }
       };
       this.props.updateNote({note});
@@ -50,7 +49,10 @@ class WorkspaceHeader extends React.Component {
             updateNote={ this.props.updateNote }
             moveNote={ this.props.moveNote }
             notebooks={ this.props.notebooks } />
-          <TagDropdown activeNote={ this.props.activeState.activeNote } />
+          <TagDropdown
+            activeNote={ this.props.activeState.activeNote }
+            updateNote={ this.props.updateNote }
+             />
           <button className="save-btn" onClick={ this.saveNoteContent }>Save</button>
         </div>
 

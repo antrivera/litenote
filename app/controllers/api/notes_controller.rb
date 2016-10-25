@@ -31,12 +31,15 @@ class Api::NotesController < ApplicationController
     @note = Note.find(params[:id])
 
     if (@note.notebook.author_id == current_user.id) && @note.update(note_params)
-      params[:note][:tags].each do |tag_name|
-        tag = Tag.find_by_name(tag_name)
-        if tag
-          @note.taggings.create(note_id: @note.id, tag_id: tag.id)
-        else
-          @note.tags.create(name: tag_name)
+      tags = params[:note][:tags]
+      if (tags)
+        params[:note][:tags].each do |tag_name|
+          tag = Tag.find_by_name(tag_name)
+          if tag
+            @note.taggings.create(note_id: @note.id, tag_id: tag.id)
+          else
+            @note.tags.create(name: tag_name)
+          end
         end
       end
       render json: @note

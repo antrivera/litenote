@@ -18,7 +18,10 @@ const NoteMiddleware = ({getState, dispatch}) => next => action => {
   }
   const error = data => dispatch(receiveErrors(data));
   const createNoteSuccess = note => dispatch(receiveNote(note));
-  const updateNoteSuccess = note => dispatch(receiveUpdatedNote(note));  // dispatch to update active state/ editor ?
+  const updateNoteSuccess = note => {
+    dispatch(receiveUpdatedNote(note)); 
+    dispatch(displayNoteContent(note));
+  }
 
   switch (action.type) {
     case NoteConstants.REQUEST_NOTES:

@@ -5,13 +5,39 @@ class TagDropdown extends React.Component {
     super(props);
 
     this.state = {
-      dropDownDisplay: "closed"
+      dropDownDisplay: "closed",
+      tagName: ""
     };
 
     this.toggleDropDownDisplay = this.toggleDropDownDisplay.bind(this);
+    this.updateTagName = this.updateTagName.bind(this);
+    this.addTagToNote = this.addTagToNote.bind(this);
+  }
+
+  updateTagName(e) {
+    this.setState({tagName: e.currentTarget.value});
+  }
+
+  addTagToNote(e) {
+    if (e.keyCode === 13) {
+      let existingNoteTags = this.props.activeNote.tags.map(tag => tag.name);
+      let note = {
+        id: this.props.activeNote.id,
+        details: {
+          tags: [...existingNoteTags, this.state.tagName]
+        }
+      };
+
+      this.props.updateNote({note});
+      this.setState({tagName: ""});
+    }
   }
 
   toggleDropDownDisplay(e) {
+    if (!this.props.activeNote) {
+      return;
+    }
+
     if (this.state.dropDownDisplay === "open" && e.target.id === "tag-input") {
       return;
     }
@@ -24,7 +50,7 @@ class TagDropdown extends React.Component {
       return null;
     }
     return this.props.activeNote.tags.map( tag => (
-      <li className="tag-index-item" key={tag.id + tag.title}>{tag.name}</li>
+      <li className="tag-index-item" key={tag.id + tag.name}>{tag.name}</li>
     ));
   }
 
@@ -37,7 +63,13 @@ class TagDropdown extends React.Component {
           <ul>
             <li>
               <div>
-                <input type="text" id="tag-input" placeholder="Tag your note"></input>
+                <input type="text"
+                  id="tag-input"
+                  placeholder="Tag your note"
+                  value={this.state.tagName}
+                  onKeyDown={ this.addTagToNote }
+                  onChange={ this.updateTagName }
+                />
               </div>
             </li>
             {this.tagList()}

@@ -20,7 +20,6 @@ class Workspace extends React.Component {
   }
 
   handleChange(content, delta, source, editor) {
-    console.log(content);
     this.props.setContentState({editorState: content, title: this.props.editorState.title});
   }
 
