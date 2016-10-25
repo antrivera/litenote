@@ -15,6 +15,7 @@ class Sidebar extends React.Component {
     this.closeDrawer = this.closeDrawer.bind(this);
     this.displayNotes = this.displayNotes.bind(this);
     this.fetchNoteContent = this.fetchNoteContent.bind(this);
+    this.fetchTaggedNotes = this.fetchTaggedNotes.bind(this);
   }
 
   openNotebookDrawer() {
@@ -26,6 +27,7 @@ class Sidebar extends React.Component {
   }
 
   openTagDrawer() {
+    this.props.fetchAllTags();
     this.props.displayAllTags();
   }
 
@@ -43,6 +45,11 @@ class Sidebar extends React.Component {
   fetchNoteContent(note) {
     this.props.fetchNote(note);
     this.props.displayNoteContent(note);
+  }
+
+  fetchTaggedNotes(tag) {
+    this.props.fetchTaggedNotes(tag);
+    this.props.displayTaggedNotes(tag);
   }
 
   render() {

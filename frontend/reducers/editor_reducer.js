@@ -11,13 +11,10 @@ const EditorStateReducer = (state= defaultEditorState, action) => {
     case EditorConstants.EMPTY_CONTENT_STATE:
       return defaultEditorState;
     case EditorConstants.SET_CONTENT_STATE:
-      // debugger
       const { editorState } = action.content;
       const { title } = action.content;
-      // debugger
       return merge({}, state, {editorState}, {title});
     case EditorConstants.LOAD_EDITOR_STATE:
-      debugger
       // const rawContent = JSON.parse(action.content.body);
       // const contentState = convertFromRaw(rawContent);
       // return merge({}, defaultEditorState,

@@ -3,7 +3,6 @@ import React from 'react';
 const updateNoteParentNotebook = (note, moveNote, notebook) => (
   () => {
     if (!note) {
-      debugger
       moveNote(null, notebook);
       return;
     }

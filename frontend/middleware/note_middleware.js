@@ -19,7 +19,7 @@ const NoteMiddleware = ({getState, dispatch}) => next => action => {
   const error = data => dispatch(receiveErrors(data));
   const createNoteSuccess = note => dispatch(receiveNote(note));
   const updateNoteSuccess = note => {
-    dispatch(receiveUpdatedNote(note)); 
+    dispatch(receiveUpdatedNote(note));
     dispatch(displayNoteContent(note));
   }
 
@@ -55,7 +55,6 @@ const NoteMiddleware = ({getState, dispatch}) => next => action => {
       if (getState().activeState.activeNote) {
         NoteAPI.updateNote(action.note, cb, error);
       } else {
-        debugger
         dispatch(displayNotebookContent(action.notebook));
       }
       break;

@@ -32,13 +32,11 @@ export const updateNote = note => ({
   note
 });
 
-export const moveNote = (note, notebook) => {
-  debugger
-return{
+export const moveNote = (note, notebook) => ({
   type: NoteConstants.MOVE_NOTE,
   note,
   notebook
-}};
+});
 
 export const receiveUpdatedNote = note => ({
   type: NoteConstants.RECEIVE_UPDATE,
