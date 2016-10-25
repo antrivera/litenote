@@ -18,11 +18,8 @@ class Note < ActiveRecord::Base
   has_many :tags, through: :taggings, source: :tag
 
   def self.owned_by(user)
-    current_user = User.find(user.id)
-    user_notes = []
-    current_user.notebooks.each do |notebook|
-      user_notes << notebook.notes
-    end
+    current_user = User.includes(:notes, :tags).find(user.id)
+    user_notes = current_user.notes
 
     user_notes.flatten
   end

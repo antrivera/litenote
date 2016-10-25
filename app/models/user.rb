@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
     foreign_key: :author_id
   )
 
+  has_many :notes, through: :notebooks
+  has_many :tags, through: :notes
+
   attr_reader :password
 
   def self.generate_session_token
