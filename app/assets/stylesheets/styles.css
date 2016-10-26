@@ -131,7 +131,8 @@ button:hover {
 }
 
 .sidebar-btn:hover {
-  background: #fdf0af;
+  width: 47px;
+  transition: all 200ms ease;
 }
 
 .side-menu-container {
@@ -257,6 +258,7 @@ button:hover {
   background: white;
   color: #1abc9c;
   font-size: 14px;
+  flex-wrap: wrap;
 }
 
 /* allow scrollbar to work */
@@ -868,4 +870,14 @@ input:focus {
   height: 30px;
   width: 30px;
   background: #808080;
+}
+
+.notes-count {
+  flex: 1 0 100%;
+  color: #878787;
+}
+
+#notes-header-title {
+  margin-top: 8px;
+  margin-bottom: 0;
 }

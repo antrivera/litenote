@@ -44,8 +44,11 @@ class NoteIndex extends React.Component {
       <div className="side-menu-container">
         <div className="header">
           <div className="header-container">
-            <h2>{`${this.props.notebook.title.toUpperCase()}`}</h2>
+            <h2 id="notes-header-title">{`${this.props.notebook.title.toUpperCase()}`}</h2>
             <div className="new-icon" onClick={ this.createNewNote }></div>
+            <div className="notes-count">
+              { `${this.props.notes.length} ${this.props.notes.length === 1 ? "note" : "notes"}` }
+            </div>
           </div>
           <div className="search-input-container">
             <input
