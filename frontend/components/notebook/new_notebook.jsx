@@ -36,20 +36,25 @@ class NewNotebook extends React.Component {
 
   render() {
     return (
-      <div className="new-notebook-form-container">
-        <h1>CREATE NOTEBOOK</h1>
-        <form className="new-notebook-form" onSubmit={this.handleSubmit}>
-          <label> Title:
-            <input type="text"
-              value= {this.state.title}
-              onChange={this.update("title")} />
-          </label>
-          <br />
-        </form>
+      <div className="new-notebook-container">
+        <div className="new-notebook-form-container">
+          <div className="notebook-icon"></div>
+          <h1 id="new-notebook-header">CREATE NOTEBOOK</h1>
+          <form className="new-notebook-form" onSubmit={this.handleSubmit}>
+            <label>
+              <input type="text"
+                id="new-notebook-input"
+                value= {this.state.title}
+                placeholder="Title your notebook"
+                onChange={this.update("title")} />
+            </label>
+            <br />
+          </form>
 
-        <div className="new-notebook-form-btns">
-          <button onClick={ this.cancel } className="cancel-btn">Cancel</button>
-          <button onClick={ this.handleSubmit }>Create</button>
+          <div className="new-notebook-form-btns">
+            <button onClick={ this.cancel } className="cancel-btn">Cancel</button>
+            <button id="new-notebook-submit-btn" onClick={ this.handleSubmit }>Create</button>
+          </div>
         </div>
       </div>
     );
