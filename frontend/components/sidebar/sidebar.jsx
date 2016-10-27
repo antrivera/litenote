@@ -19,6 +19,7 @@ class Sidebar extends React.Component {
   }
 
   openNotebookDrawer() {
+    this.props.fetchAllNotebooks();
     this.props.displayAllNotebooks();
   }
 

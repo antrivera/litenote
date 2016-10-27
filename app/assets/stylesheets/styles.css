@@ -238,7 +238,7 @@ button:hover {
 }
 
 .notebook-title {
-  margin: 12px 80px 0 24px;
+  margin: 12px 80px 0 0;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -248,6 +248,12 @@ button:hover {
   border-top: 1px solid gainsboro;
   border-bottom: 1px solid gainsboro;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+#notebook-index-item-info {
+  padding-left: 24px;
 }
 
 .notebook-list-item:hover {
@@ -586,6 +592,10 @@ button:hover {
   border: none;
 }
 
+.tag-name {
+  margin: 12px 0 0 24px;
+}
+
 .search-term-input {
   width: 75%;
   height: 35px;
@@ -918,6 +928,7 @@ input:focus {
 .notes-count {
   flex: 1 0 100%;
   color: #878787;
+  font-size: 14px;
 }
 
 #notes-header-title {

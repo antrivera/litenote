@@ -23,6 +23,12 @@ class Notebook < ActiveRecord::Base
 
   def self.owned_by(user)
     current_user = User.find(user.id)
-    current_user.notebooks
+    current_user.notebooks.includes(:notes)
+  end
+
+  def as_json(options={})
+    h = super(options)
+    h[:note_count] = notes.length
+    h
   end
 end

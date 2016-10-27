@@ -11,10 +11,6 @@ class NotebookIndex extends React.Component {
     this.closeNotebookDrawer = this.closeNotebookDrawer.bind(this);
   }
 
-  componentWillMount() {
-    this.props.fetchAllNotebooks();
-  }
-
   componentDidMount() {
     document.addEventListener('click', this.closeNotebookDrawer, false);
   }
@@ -51,8 +47,13 @@ class NotebookIndex extends React.Component {
     return this.props.notebooks.map((notebook, idx) => (
       <li key={notebook.title + idx}>
         <div className="notebook-list-item" onClick={this.displayNotebook.bind(null, notebook)}>
-          <div className="notebook-title">
-            {notebook.title}
+          <div id="notebook-index-item-info">
+            <div className="notebook-title">
+              {notebook.title}
+            </div>
+            <div className="notes-count">
+              { `${notebook.note_count} ${notebook.note_count === 1 ? "note" : "notes"}` }
+            </div>
           </div>
           { notebook.removable === true ? (
             <div className="notebook-item-btns">
