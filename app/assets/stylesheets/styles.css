@@ -351,6 +351,17 @@ button:hover {
   background: #1abc9c;
 }
 
+.move-note-icon {
+  -webkit-mask-image: url(move-note.svg);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100%;
+  mask-image: url(move-note.svg);
+  height: 33px;
+  width: 33px;
+  background: #1abc9c;
+  margin-left: 10px;
+}
+
 .tag-icon {
   -webkit-mask-image: url(tag.svg);
   -webkit-mask-repeat: no-repeat;
@@ -380,8 +391,8 @@ button:hover {
 .delete-btn {
   background: gainsboro;
   color: white;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 32px;
   -webkit-mask-image: url(delete.svg);
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: 100%;
@@ -818,7 +829,18 @@ input:focus {
 }
 
 .create-new-notebook {
+  color: #808080;
+  display: flex;
+  font-size: 14px;
+}
+
+.active-notebook {
   color: #1abc9c;
+}
+
+li.notebook-dropdown-item.create-new-notebook:hover {
+  color: #1abc9c;
+  background: white;
 }
 
 .current-notebook {
@@ -877,6 +899,22 @@ input:focus {
   margin: 10px;
   padding: 3px 5px;
   font-size: 14px;
+  cursor: pointer;
+}
+
+.tag-index-item:hover {
+  background: #1abc9c;
+  color: white;
+  font-weight: bold;
+}
+
+.tag-list-item {
+  display: flex;
+  align-items: center;
+}
+
+.tag-index-container .header-container {
+  border-bottom: 1px solid gainsboro;
 }
 
 #tag-input {

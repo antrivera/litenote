@@ -30,11 +30,11 @@ class TagIndex extends React.Component {
   tagNames() {
     return this.props.tags.map((tag, idx) => (
       <li key={tag.name + idx}>
-        <div className="notebook-list-item" onClick={ this.displayTaggedNotes.bind(null, tag) }>
-          <div className="tag-name">
+        <div className="tag-list-item" onClick={ this.displayTaggedNotes.bind(null, tag) }>
+          <div className="tag-index-item">
             {tag.name}
           </div>
-          <div className="notebook-item-btns">
+          <div className="tag-item-btns">
             <button className="delete-btn sidebar-btn"></button>
           </div>
         </div>

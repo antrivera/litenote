@@ -16,7 +16,7 @@ class NotebookDropdown extends React.Component{
     if (!this.props.activeNote) {
       return;
     }
-    
+
     let display = this.state.dropDownDisplay === "closed" ? "open" : "closed";
     this.setState({dropDownDisplay: display});
   }
@@ -54,7 +54,8 @@ class NotebookDropdown extends React.Component{
         <div className={`notebook-dropdown ${this.state.dropDownDisplay}` }>
           <ul>
             <li className="notebook-dropdown-item create-new-notebook">
-              <span className="dropdown-header">+ CREATE NEW NOTEBOOK</span>
+              <div className="move-note-icon"></div>
+              <span className="dropdown-header">MOVE NOTE</span>
             </li>
             { this.notebookTitles() }
           </ul>
