@@ -7,10 +7,6 @@ class TagIndex extends React.Component {
     this.displayTaggedNotes = this.displayTaggedNotes.bind(this);
   }
 
-  componentWillMount() {
-    this.props.fetchAllTags();
-  }
-
   componentDidMount() {
     document.addEventListener('click', this.closeTagDrawer(), false);
   }

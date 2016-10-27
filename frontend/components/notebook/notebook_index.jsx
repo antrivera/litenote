@@ -11,6 +11,10 @@ class NotebookIndex extends React.Component {
     this.closeNotebookDrawer = this.closeNotebookDrawer.bind(this);
   }
 
+  componentWillMount() {
+    this.props.fetchAllNotebooks();
+  }
+
   componentDidMount() {
     document.addEventListener('click', this.closeNotebookDrawer, false);
   }
