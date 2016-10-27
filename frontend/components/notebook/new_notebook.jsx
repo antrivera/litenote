@@ -14,8 +14,12 @@ class NewNotebook extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    if (this.state.title.length === 0) {
+      return;
+    }
+
     const notebook = {
-      title: this.state.title
+      title: this.state.title.trim()
     }
 
     this.props.createNotebook({notebook});
@@ -34,7 +38,7 @@ class NewNotebook extends React.Component {
     return (
       <div className="new-notebook-form-container">
         <h1>CREATE NOTEBOOK</h1>
-        <form className="new-notebook-form">
+        <form className="new-notebook-form" onSubmit={this.handleSubmit}>
           <label> Title:
             <input type="text"
               value= {this.state.title}
