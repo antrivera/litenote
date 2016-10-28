@@ -21,6 +21,14 @@ class Api::TagsController < ApplicationController
   end
 
   def destroy
+    @tag = Tag.find(params[:id])
+
+    if @tag
+      current_user.notes.each { |note| note.tags.delete(@tag.id) if note.tags.find_by_id(@tag.id)}
+      render json: current_user.tags.uniq
+    else
+      render json: @tag.errors.full_messages, status: 422
+    end
   end
 
   private

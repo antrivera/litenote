@@ -1,6 +1,7 @@
 export const TagConstants = {
   REQUEST_TAGS: "REQUEST_TAGS",
   REQUEST_TAGGED_NOTES: "REQUEST_TAGGED_NOTES",
+  DELETE_TAG: "DELETE_TAG",
   RECEIVE_TAGS: "RECEIVE_TAGS",
   RECEIVE_ERRORS: "RECEIVE_ERRORS"
 };
@@ -11,6 +12,11 @@ export const fetchAllTags = () => ({
 
 export const fetchTaggedNotes = tag => ({
   type: TagConstants.REQUEST_TAGGED_NOTES,
+  tag
+});
+
+export const deleteTag = tag => ({
+  type: TagConstants.DELETE_TAG,
   tag
 });
 

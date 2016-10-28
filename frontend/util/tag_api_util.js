@@ -15,3 +15,12 @@ export const fetchTaggedNotes = (tag, success, error) => {
     error
   });
 };
+
+export const deleteTag = (tag, success, error) => {
+  $.ajax({
+    method: 'DELETE',
+    url: `api/tags/${tag.id}`,
+    success,
+    error
+  });
+};

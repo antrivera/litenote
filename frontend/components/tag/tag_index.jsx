@@ -5,6 +5,7 @@ class TagIndex extends React.Component {
     super(props);
 
     this.displayTaggedNotes = this.displayTaggedNotes.bind(this);
+    this.deleteTag = this.deleteTag.bind(this);
   }
 
   componentDidMount() {
@@ -27,15 +28,19 @@ class TagIndex extends React.Component {
     this.props.fetchTaggedNotes(tag);
   }
 
+  deleteTag(tag) {
+    this.props.deleteTag(tag);
+  }
+
   tagNames() {
     return this.props.tags.map((tag, idx) => (
       <li key={tag.name + idx}>
-        <div className="tag-list-item" onClick={ this.displayTaggedNotes.bind(null, tag) }>
-          <div className="tag-index-item">
+        <div className="tag-list-item">
+          <div className="tag-index-item" onClick={ this.displayTaggedNotes.bind(null, tag) }>
             {tag.name}
           </div>
           <div className="tag-item-btns">
-            <button className="delete-btn sidebar-btn"></button>
+            <button className="delete-btn sidebar-btn" onClick={ this.deleteTag.bind(null, tag) }></button>
           </div>
         </div>
       </li>

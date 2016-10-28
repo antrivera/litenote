@@ -13,6 +13,10 @@ const TagMiddleware = ({getState, dispatch}) => next => action => {
     case TagConstants.REQUEST_TAGGED_NOTES:
       const requestTaggedNotesSuccess = data => dispatch(receiveAllNotes(data));
       TagAPI.fetchTaggedNotes(action.tag, requestTaggedNotesSuccess, error)
+      break;
+    case TagConstants.DELETE_TAG:
+      TagAPI.deleteTag(action.tag, success, error);
+      break;
     default:
       break;
   }

@@ -91,6 +91,7 @@ class Sidebar extends React.Component {
           tags={this.props.tags}
           closeDrawer={ this.closeDrawer }
           fetchAllTags={ this.props.fetchAllTags }
+          deleteTag={this.props.deleteTag}
           fetchTaggedNotes={this.fetchTaggedNotes} />
       </div>
     );
