@@ -31,7 +31,7 @@ const NoteMiddleware = ({getState, dispatch}) => next => action => {
       updateNoteDisplay(action.notes);
       break;
     case NoteConstants.REQUEST_NOTE:
-      NoteAPI.fetchNote(action.note, receiveNoteSuccess, error);
+      dispatch(setContentState({editorState: action.note.body, title: action.note.title}));
       break;
     case NoteConstants.RECEIVE_NOTE:
       dispatch(displayNoteContent(action.note));
