@@ -21,6 +21,7 @@ class Sidebar extends React.Component {
   openNotebookDrawer() {
     this.props.fetchAllNotebooks();
     this.props.displayAllNotebooks();
+    document.getElementsByClassName('workspace-container')[0].style.opacity = 0.5;
   }
 
   closeDrawer() {
@@ -30,9 +31,11 @@ class Sidebar extends React.Component {
   openTagDrawer() {
     this.props.fetchAllTags();
     this.props.displayAllTags();
+    document.getElementsByClassName('workspace-container')[0].style.opacity = 0.5;
   }
 
   displayNotes() {
+    this.props.closeDrawer();
     this.props.fetchAllNotes();
     this.props.displayAllNotes();
   }

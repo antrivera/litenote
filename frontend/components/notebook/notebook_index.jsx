@@ -39,6 +39,7 @@ class NotebookIndex extends React.Component {
   }
 
   displayNotebook(notebook) {
+    this.props.closeDrawer();
     this.fetchNotebookContents(notebook);
   }
 

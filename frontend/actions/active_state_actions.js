@@ -35,6 +35,9 @@ export const displayNoteContent = note => ({
   note
 });
 
-export const closeDrawer = () => ({
-  type: ActiveStateConstants.CLOSE_DRAWER
-});
+export const closeDrawer = () => {
+  document.getElementsByClassName('workspace-container')[0].style.opacity = 1;
+  return ({
+    type: ActiveStateConstants.CLOSE_DRAWER
+  });
+};

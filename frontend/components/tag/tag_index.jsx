@@ -25,6 +25,7 @@ class TagIndex extends React.Component {
   }
 
   displayTaggedNotes(tag) {
+    this.props.closeDrawer();
     this.props.fetchTaggedNotes(tag);
   }
 
