@@ -40,7 +40,7 @@ class NewNotebook extends React.Component {
         <div className="new-notebook-form-container">
           <div className="notebook-icon"></div>
           <h1 id="new-notebook-header">CREATE NOTEBOOK</h1>
-          <form className="new-notebook-form" onSubmit={this.handleSubmit}>
+          <form className="new-notebook-form" autoComplete="off" onSubmit={this.handleSubmit}>
             <label>
               <input type="text"
                 id="new-notebook-input"
