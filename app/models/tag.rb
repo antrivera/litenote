@@ -3,5 +3,5 @@ class Tag < ActiveRecord::Base
 
   has_many :taggings
 
-  has_many :notes, through: :taggings, source: :note
+  has_many :notes, ->{order("updated_at DESC")}, through: :taggings, source: :note
 end

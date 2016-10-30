@@ -19,7 +19,7 @@ class Notebook < ActiveRecord::Base
     foreign_key: :author_id
   )
 
-  has_many :notes, dependent: :destroy
+  has_many :notes, ->{order("updated_at DESC")}, dependent: :destroy
 
   def self.owned_by(user)
     current_user = User.find(user.id)
