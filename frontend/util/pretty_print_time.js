@@ -13,7 +13,7 @@ export const prettyPrintTime = time => {
     return `${daysDiff} days ago`;
   } else if (daysDiff > 1 && daysDiff < 30) {
     let numWeeks = Math.floor(daysDiff / 7);
-    return `${daysDiff} weeks ago`;
+    return `${numWeeks} weeks ago`;
   }
 
   if (secondsDiff < 60) {
